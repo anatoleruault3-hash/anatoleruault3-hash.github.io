@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "weights": {
+    "error": 15,
+    "warning": 7,
+    "info": 2
+  },
+  "thresholds": {
+    "excellent": 90,
+    "good": 80,
+    "needs_attention": 65
+  },
+  "rules": {
+    "lang_required": true,
+    "lang_expected": "fr",
+    "title_required": true,
+    "title_min": 20,
+    "title_max": 65,
+    "meta_description_required": true,
+    "meta_description_min": 70,
+    "meta_description_max": 170,
+    "h1_required": true,
+    "h1_max": 1,
+    "main_recommended": true,
+    "img_alt_required": true,
+    "target_blank_rel_required": true,
+    "internal_links_must_exist": true,
+    "local_assets_must_exist": true,
+    "detect_orphan_pages": true,
+    "check_nav_consistency": true
+  }
+}

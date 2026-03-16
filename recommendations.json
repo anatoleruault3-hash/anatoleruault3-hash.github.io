@@ -1,0 +1,58 @@
+{
+  "recommendations": [
+    {
+      "type": "professionnelle",
+      "name": "Camille Lemenuel",
+      "role": "Associ\u00e9e & G\u00e9rante Gestion - Location",
+      "company": "CASA Immobilier",
+      "photo": "camille_lemenuel.jpg",
+      "source": "Stage CASA",
+      "text": "Quel plaisir de lire de tel retour sur les 6 semaines partag\u00e9s ensemble dans notre quotidien \ud83d\udd25 Merci \u00e0 toi Anatole Ruault pour ton investissement, ton \u00e9nergie et ta motivation \u00e0 entreprendre ! Devant chaque mission confi\u00e9e tu t\u2019es montr\u00e9 partant, volontaire et exigeant \u00e0 donner le meilleur de toi ! Tu es devenu un membre de l\u2019\u00e9quipe pendant ce stage et ton investissement est \u00e0 la hauteur des qualit\u00e9s humaines que tu poss\u00e8des ! Je suis heureuse de savoir que je vais pouvoir continuer \u00e0 suivre ton parcours, qui je le sais, sera rempli de r\u00e9ussite et de beaux projets ! Ne l\u00e2che pas tes ambitions tu en es tr\u00e8s largement capable ! La porte de Casa te sera toujours ouverte ! \ud83d\ude4f\ud83d\ude0a\ud83d\ude07"
+    },
+    {
+      "type": "professionnelle",
+      "name": "J\u00e9r\u00e9my Roussel",
+      "role": "Associ\u00e9 g\u00e9rant & co-fondateur",
+      "company": "CASA Immobilier",
+      "photo": "jeremy_roussel.jpg",
+      "source": "Stage CASA",
+      "text": "Anatole Ruault bravo pour ce message sinc\u00e8re et pour ton investissement tout au long de ces 6 semaines. Chez CASA on aime voir les stagiaires s\u2019impliquer, apprendre et se confronter \u00e0 la r\u00e9alit\u00e9 du terrain\u2026 et tu l\u2019as fait avec brio. Tu es m\u00eame parvenu \u00e0 g\u00e9rer une location de A \u00e0 Z, \u00e0 faire face \u00e0 des situations tendues et surtout \u00e0 me rendre mes cl\u00e9s que tu avais \u00e9gar\u00e9es \ud83d\ude05 Comme quoi tout est bien qui finit bien ! Merci \u00e0 toi pour ton s\u00e9rieux, ta curiosit\u00e9 et ta bonne humeur. On te souhaite le meilleur pour la suite de ton parcours."
+    },
+    {
+      "type": "professionnelle",
+      "name": "Corinne Villechalane Barr\u00e9",
+      "role": "G\u00e9rante",
+      "company": "C. Barr\u00e9 Immobilier \u2013 Caen",
+      "photo": "corinne_barre.jpg",
+      "source": "Stage Barr\u00e9 Immobilier",
+      "text": "J\u2019ai eu le plaisir d\u2019accueillir Anatole pendant 2 semaines en stage dans mon agence immobili\u00e8re. Il a montr\u00e9 beaucoup d\u2019int\u00e9r\u00eat dans tous les domaines (vente et location). Anatole est tr\u00e8s investi et toujours avec le sourire ! Je le recommande."
+    },
+    {
+      "type": "academique",
+      "name": "Charline Dumaine",
+      "role": "Professeure d'économie et droit",
+      "company": "CaenSup Sainte-Ursule",
+      "photo": "charline_dumaine.jpg",
+      "source": "\u00c9quipe p\u00e9dagogique",
+      "text": "J\u2019ai pu appr\u00e9cier son s\u00e9rieux, sa curiosit\u00e9 et son r\u00e9el investissement tout au long de sa formation. Dynamique et dot\u00e9 d\u2019un excellent sens du relationnel, il a su d\u00e9velopper des comp\u00e9tences commerciales solides particuli\u00e8rement adapt\u00e9es au secteur de l\u2019immobilier."
+    },
+    {
+      "type": "academique",
+      "name": "Franck Fontaine",
+      "role": "Professeur coordinateur BTS NDRC",
+      "company": "CaenSup Sainte-Ursule",
+      "photo": "franck_fontaine.jpg",
+      "source": "\u00c9quipe p\u00e9dagogique",
+      "text": "Anatole est un \u00e9tudiant de BTS remarquable. Il est motiv\u00e9 et r\u00e9ellement impliqu\u00e9 dans sa formation. Souvent moteur pour sa promotion, il participe activement en cours."
+    },
+    {
+      "type": "academique",
+      "name": "Magali Magloire",
+      "role": "Professeure de négociation et de management",
+      "company": "CaenSup Sainte-Ursule",
+      "photo": "magali_magloire.jpg",
+      "source": "\u00c9quipe p\u00e9dagogique",
+      "text": "Je recommande Anatole pour son envie de r\u00e9ussir, sa curiosit\u00e9 et sa disponibilit\u00e9. C\u2019est un \u00e9tudiant agr\u00e9able et dynamique qui sait s\u2019adapter et progresser."
+    }
+  ]
+}
