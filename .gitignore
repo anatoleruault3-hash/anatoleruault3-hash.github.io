@@ -1,0 +1,15 @@
+# Fichiers internes / outils de développement
+.claude/
+.playwright-mcp/
+.vscode/
+
+# Captures d'audit (screenshots de développement)
+audit_*.png
+screenshot_*.png
+
+# Rapports d'évaluation temporaires
+evaluation/reports/
+
+# OS
+Thumbs.db
+.DS_Store
