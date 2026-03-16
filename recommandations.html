@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anatole Ruault – Recommandations</title>
+  <meta name="description" content="Recommandations professionnelles et académiques pour Anatole Ruault : témoignages de professionnels de l'immobilier, directeurs d'agence et responsables pédagogiques." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Anatole Ruault – Recommandations" />
+  <meta property="og:description" content="Témoignages de professionnels de l'immobilier et responsables pédagogiques qui ont travaillé avec Anatole Ruault." />
+  <meta property="og:image" content="https://anatoleruault.fr/images/photo_professionnelle.png" />
+  <meta property="og:url" content="https://anatoleruault.fr/recommandations.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">A<span>natole</span> Ruault</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">Profil</a></li>
+    <li><a href="parcours.html">Parcours</a></li>
+    <li><a href="parcours.html#experiences">Expériences</a></li>
+    <li><a href="parcours.html#competences">Compétences</a></li>
+    <li><a href="recommandations.html" class="current">Recommandations</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Me contacter</a>
+  <button class="nav-burger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- RECOMMANDATIONS -->
+<section id="recommandations">
+  <div class="section-label">Ils témoignent</div>
+  <h2 class="section-title">Recommandations</h2>
+  <div class="reco-hero">
+    <p class="section-desc">Professionnels de l'immobilier, responsables pédagogiques et encadrants qui ont travaillé à mes côtés — voici ce qu'ils ont retenu de notre collaboration.</p>
+  </div>
+
+  <div id="reco-container" class="reveal">
+    <div class="reco-loading">Chargement des recommandations…</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">Anatole Ruault</div>
+    <div class="footer-copy">© 2026 · Bachelor GESAI · ESPI Levallois-Perret</div>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="parcours.html">Parcours</a>
+    <a href="recommandations.html">Recommandations</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-actions">
+    <a href="CV_Ruault_Anatole.pdf" download class="footer-cv-btn">
+      <i data-lucide="download"></i> CV
+    </a>
+    <a href="https://www.linkedin.com/in/anatole-ruault-9686b6239" target="_blank" rel="noopener noreferrer" class="footer-icon-link" aria-label="LinkedIn">
+      <i data-lucide="linkedin"></i>
+    </a>
+    <a href="mailto:anatoleruault3@gmail.com" class="footer-icon-link" aria-label="Email">
+      <i data-lucide="mail"></i>
+    </a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="main.js"></script>
+<script>
+(function () {
+  /* ── Mapping : nom de photo JSON → chemin réel ──────── */
+  const photoMap = {
+    'camille_lemenuel.jpg':  'images/recommendations/camille.png',
+    'jeremy_roussel.jpg':    'images/recommendations/jeremy.png',
+    'corinne_barre.jpg':     'images/recommendations/barre.png',
+    'charline_dumaine.jpg':  'images/recommendations/dumaine.png',
+    'franck_fontaine.jpg':   'images/recommendations/fontaine.png',
+    'magali_magloire.jpg':   'images/recommendations/magloire.png',
+  };
+
+  /* ── Ordre et groupement souhaités ─────────────────── */
+  const SECTION_PRO   = ['Camille Lemenuel', 'Jérémy Roussel', 'Corinne Villechalane Barré'];
+  const SECTION_ACAD  = ['Franck Fontaine', 'Magali Magloire', 'Charline Dumaine'];
+
+  function getInitials(name) {
+    return name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  }
+
+  function buildCard(rec) {
+    const photoSrc = photoMap[rec.photo] || null;
+    const avatarHTML = photoSrc
+      ? `<img src="${photoSrc}" alt="${rec.name}" onerror="this.parentElement.innerHTML='<div class=\\'reco-avatar-initials\\'>${getInitials(rec.name)}</div>'" />`
+      : `<div class="reco-avatar-initials">${getInitials(rec.name)}</div>`;
+
+    return `
+      <article class="reco-card">
+        <span class="reco-quote-mark">"</span>
+        <div class="reco-person">
+          <div class="reco-avatar">${avatarHTML}</div>
+          <div class="reco-info">
+            <div class="reco-name">${rec.name}</div>
+            <div class="reco-role">${rec.role}</div>
+            <div class="reco-company">${rec.company}</div>
+            ${rec.source ? `<span class="reco-source-badge">${rec.source}</span>` : ''}
+          </div>
+        </div>
+        <p class="reco-text">"${rec.text}"</p>
+      </article>`;
+  }
+
+  function buildSection(label, recs) {
+    if (!recs.length) return '';
+    const id = label.includes('profession') ? 'reco-pro' : 'reco-acad';
+    return `
+      <div class="reco-section" id="${id}">
+        <div class="reco-section-header">
+          <span class="reco-section-label">${label}</span>
+          <div class="reco-section-line"></div>
+        </div>
+        <div class="reco-grid">
+          ${recs.map(buildCard).join('')}
+        </div>
+      </div>`;
+  }
+
+  fetch('recommendations.json')
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(data => {
+      const all = data.recommendations || [];
+
+      /* Tri par ordre défini, fallback à l'ordre JSON */
+      const byName = Object.fromEntries(all.map(r => [r.name, r]));
+
+      const pro  = SECTION_PRO.map(n => byName[n]).filter(Boolean);
+      const acad = SECTION_ACAD.map(n => byName[n]).filter(Boolean);
+
+      const container = document.getElementById('reco-container');
+      container.innerHTML =
+        buildSection('Recommandations professionnelles', pro) +
+        buildSection('Recommandations académiques', acad);
+
+      lucide.createIcons();
+    })
+    .catch(err => {
+      document.getElementById('reco-container').innerHTML =
+        `<div class="reco-error">Impossible de charger les recommandations.<br><small>${err.message}</small></div>`;
+    });
+})();
+</script>
+</body>
+</html>
