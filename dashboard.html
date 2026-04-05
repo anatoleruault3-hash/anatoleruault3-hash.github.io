@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · Candidatures</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0b1118;
+      color: #f5f3ee;
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ─── AUTH SCREEN ─── */
+    #auth-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .auth-box {
+      width: 100%;
+      max-width: 360px;
+      padding: 0 16px;
+    }
+    .auth-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #c9a84c;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .auth-sub {
+      color: #8a9ab0;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .auth-card {
+      background: #131c26;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .auth-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a9ab0;
+      margin-bottom: 8px;
+    }
+    .auth-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 16px;
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .auth-input:focus { border-color: rgba(201,168,76,0.5); }
+    .auth-input.error { border-color: rgba(239,68,68,0.6); }
+    .auth-error {
+      color: #f87171;
+      font-size: 12px;
+      margin-top: 8px;
+      min-height: 18px;
+    }
+    .auth-btn {
+      width: 100%;
+      margin-top: 16px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: #c9a84c;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .auth-btn:hover { background: rgba(201,168,76,0.25); }
+
+    /* ─── DASHBOARD ─── */
+    #dashboard { display: none; min-height: 100vh; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 64px; }
+
+    /* Header */
+    .dash-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 32px 0 32px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .dash-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .dash-title-gold { color: #c9a84c; }
+    .dash-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: #8a9ab0;
+      letter-spacing: 0.08em;
+      margin-top: 8px;
+    }
+    .dash-contact {
+      text-align: right;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: #8a9ab0;
+    }
+    .dash-contact a { color: #c9a84c; text-decoration: none; }
+    .dash-contact a:hover { text-decoration: underline; }
+    .dash-update { opacity: 0.6; margin-top: 4px; }
+
+    /* KPI Strip */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.05);
+      gap: 1px;
+    }
+    .kpi-card {
+      background: #131c26;
+      padding: 20px;
+      position: relative;
+    }
+    .kpi-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      opacity: 0.7;
+    }
+    .kpi-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .kpi-label { color: #8a9ab0; font-size: 11px; line-height: 1.3; }
+    .kpi-sub {
+      color: #8a9ab0;
+      font-size: 10px;
+      margin-top: 2px;
+      opacity: 0.6;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* Charts row */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .card {
+      background: #131c26;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a9ab0;
+      margin-bottom: 16px;
+    }
+
+    /* Donut */
+    .donut-wrap { display: flex; align-items: center; gap: 20px; }
+    .donut-legend { display: flex; flex-direction: column; gap: 6px; font-size: 11px; }
+    .legend-row { display: flex; align-items: center; gap: 8px; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+    .legend-label { color: #8a9ab0; }
+    .legend-val { font-family: 'IBM Plex Mono', monospace; font-size: 10px; margin-left: auto; padding-left: 8px; }
+
+    /* Bar chart */
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 11px; }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-label { width: 120px; color: #8a9ab0; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.05); border-radius: 9999px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 9999px; transition: width 0.7s; }
+    .bar-num { font-family: 'IBM Plex Mono', monospace; color: #8a9ab0; width: 16px; text-align: right; }
+
+    /* Main grid */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 16px;
+      align-items: start;
+    }
+    .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+    /* Table card */
+    .table-card {
+      background: #131c26;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .table-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .table-header-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a9ab0;
+    }
+    .table-count { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8a9ab0; }
+
+    /* Chip filters */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .chip {
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #8a9ab0;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .chip:hover { border-color: rgba(201,168,76,0.5); color: #c9a84c; }
+    .chip.active {
+      background: rgba(201,168,76,0.15);
+      border-color: #c9a84c;
+      color: #c9a84c;
+      font-weight: 600;
+    }
+    .chip-count {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border-radius: 9999px;
+      padding: 0 5px;
+      font-size: 9px;
+      margin-left: 5px;
+    }
+
+    /* Search */
+    .search-wrap { padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .search-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input::placeholder { color: #8a9ab0; }
+    .search-input:focus { border-color: rgba(201,168,76,0.5); }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a9ab0;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    tr:last-child td { border-bottom: none; }
+
+    .td-id { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8a9ab0; }
+    .td-agence { font-weight: 500; color: #fff; }
+    .td-note { font-size: 11px; color: #8a9ab0; margin-top: 2px; }
+    .td-contact { font-size: 12px; color: #8a9ab0; max-width: 160px; }
+    .td-action { font-size: 12px; color: #8a9ab0; max-width: 200px; }
+    .empty-row td { text-align: center; padding: 40px; color: #8a9ab0; font-size: 13px; }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      border-radius: 9999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+    .badge select {
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .badge select option { background: #131c26; color: #fff; }
+
+    .badge-chaud  { background: rgba(34,197,94,0.15);   color: #4ade80; border-color: rgba(34,197,94,0.25); }
+    .badge-envoye { background: rgba(59,130,246,0.15);  color: #60a5fa; border-color: rgba(59,130,246,0.25); }
+    .badge-lundi  { background: rgba(249,115,22,0.15);  color: #fb923c; border-color: rgba(249,115,22,0.25); }
+    .badge-mardi  { background: rgba(234,179,8,0.15);   color: #facc15; border-color: rgba(234,179,8,0.25); }
+    .badge-prep   { background: rgba(168,85,247,0.15);  color: #c084fc; border-color: rgba(168,85,247,0.25); }
+    .badge-plat   { background: rgba(255,255,255,0.1);  color: #8a9ab0; border-color: rgba(255,255,255,0.15); }
+
+    .prio-HAUTE   { background: rgba(239,68,68,0.15);   color: #f87171; border-color: rgba(239,68,68,0.25); font-family: 'IBM Plex Mono', monospace; }
+    .prio-MOYENNE { background: rgba(249,115,22,0.15);  color: #fb923c; border-color: rgba(249,115,22,0.25); font-family: 'IBM Plex Mono', monospace; }
+    .prio-dash    { color: #8a9ab0; border-color: transparent; background: transparent; font-family: 'IBM Plex Mono', monospace; }
+
+    /* Sidebar cards */
+    .relance-header, .planning-header {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a9ab0;
+    }
+    .relance-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .relance-item:last-child { border-bottom: none; }
+    .relance-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .relance-agence { font-weight: 500; font-size: 13px; color: #fff; }
+    .relance-contact { font-size: 11px; color: #8a9ab0; margin-top: 2px; }
+    .relance-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; margin-top: 4px; }
+
+    /* Planning */
+    .planning-body { padding: 4px; }
+    .planning-block { padding: 12px 16px; margin-bottom: 4px; }
+    .planning-block:last-child { margin-bottom: 0; }
+    .planning-day {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .planning-block.lundi { border-left: 2px solid rgba(59,130,246,0.6); background: rgba(59,130,246,0.05); }
+    .planning-block.lundi .planning-day { color: #60a5fa; }
+    .planning-block.mardi { border-left: 2px solid rgba(249,115,22,0.6); background: rgba(249,115,22,0.05); }
+    .planning-block.mardi .planning-day { color: #fb923c; }
+    .planning-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; cursor: pointer; }
+    .planning-item:last-child { margin-bottom: 0; }
+    .planning-item input[type="checkbox"] { margin-top: 2px; accent-color: #c9a84c; flex-shrink: 0; cursor: pointer; }
+    .planning-text { font-size: 12px; color: #c8d6e5; transition: color 0.15s; }
+    .planning-text.done { color: #8a9ab0; text-decoration: line-through; }
+
+    /* Footer */
+    .dash-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: #8a9ab0;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .logout-btn {
+      background: none;
+      border: none;
+      color: #8a9ab0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .logout-btn:hover { color: #c9a84c; }
+
+    @media (max-width: 1100px) {
+      .main-grid { grid-template-columns: 1fr; }
+      .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .charts-row { grid-template-columns: 1fr; }
+      .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div id="auth-screen">
+  <div class="auth-box">
+    <h1 class="auth-title">Dashboard</h1>
+    <p class="auth-sub">Candidatures alternance · Anatole Ruault</p>
+    <div class="auth-card">
+      <form id="auth-form">
+        <label class="auth-label" for="pwd-input">Mot de passe</label>
+        <input
+          id="pwd-input"
+          type="password"
+          class="auth-input"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        >
+        <p class="auth-error" id="auth-error"></p>
+        <button type="submit" class="auth-btn">Accéder</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="dash-header">
+      <div>
+        <div class="dash-title">
+          Candidatures <span class="dash-title-gold">Immobilier Prestige</span>
+        </div>
+        <div class="dash-meta">ANATOLE RUAULT · BACHELOR ESPI PARIS · ALTERNANCE SEPT. 2026</div>
+      </div>
+      <div class="dash-contact">
+        <div>anatoleruault3@gmail.com</div>
+        <a href="https://anatoleruault.works" target="_blank">anatoleruault.works</a>
+        <div class="dash-update">Mis à jour : 5 avril 2026</div>
+      </div>
+    </div>
+
+    <!-- KPI Strip -->
+    <div class="kpi-strip" id="kpi-strip"></div>
+
+    <!-- Charts row -->
+    <div class="charts-row">
+      <div class="card">
+        <div class="card-title">Répartition par statut</div>
+        <div class="donut-wrap">
+          <svg id="donut-svg" width="110" height="110" viewBox="0 0 110 110" style="flex-shrink:0"></svg>
+          <div class="donut-legend" id="donut-legend"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Par priorité</div>
+        <div id="bar-chart"></div>
+      </div>
+    </div>
+
+    <!-- Main grid -->
+    <div class="main-grid">
+      <!-- Table -->
+      <div class="table-card">
+        <div class="table-header">
+          <span class="table-header-title">Toutes les candidatures</span>
+          <span class="table-count" id="table-count"></span>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="search-wrap">
+          <input
+            type="text"
+            class="search-input"
+            id="search-input"
+            placeholder="Rechercher une agence, un contact..."
+          >
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Agence</th>
+                <th>Contact</th>
+                <th>Statut</th>
+                <th>Priorité</th>
+                <th>Prochaine action</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="table-card">
+          <div class="relance-header">Relances à ne pas rater</div>
+          <div id="relance-list"></div>
+        </div>
+        <div class="table-card">
+          <div class="planning-header">Planning semaine</div>
+          <div class="planning-body" id="planning-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="dash-footer">
+      <span>Anatole Ruault · Bachelor Gestionnaire d'Affaires Immobilières ESPI Paris</span>
+      <button class="logout-btn" id="logout-btn">Se déconnecter</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────
+const PASSWORD    = 'alternance2026' // ← change ce mot de passe
+const SESSION_KEY = 'dashboard-auth'
+const DATA_KEY    = 'candidatures-data'
+const PLAN_KEY    = 'planning-checked'
+
+// ─── DATA ─────────────────────────────────────────────
+const AGENCES_DEFAULT = [
+  { id:1,  agence:"Maison Junot",                    contact:"Sébastien Kuperfis (Président)",       canal:"Formulaire junot.fr",                          statut:"Envoyée — en attente",      statutKey:"envoye", priorite:"HAUTE",   action:"Relance LinkedIn lun. 7/04 9h",        note:"Offre alternance active confirmée",       filtre:"envoye" },
+  { id:2,  agence:"De Ferla Immobilier",             contact:"recrutement@deferla.com",              canal:"Formulaire deferla.com",                       statut:"Envoyée",                   statutKey:"envoye", priorite:"MOYENNE",  action:"Attendre 10 jours",                   note:"Candidature spontanée",                  filtre:"envoye" },
+  { id:3,  agence:"Barnes International",            contact:"Mme Lambert (RH)",                     canal:"recrutement@barnes-international.com",          statut:"Contact chaud 🔥",          statutKey:"chaud",  priorite:"HAUTE",   action:"Relance email ~14 avril",              note:"Réponse positive — recrutement à reprendre", filtre:"chaud" },
+  { id:4,  agence:"Nouveau Siècle",                  contact:"Lola (job dating ESPI)",               canal:"Job dating ESPI",                              statut:"Entretien positif 🔥",      statutKey:"chaud",  priorite:"HAUTE",   action:"Relance ~12–15 mai",                  note:"Contact chaud confirmé",                 filtre:"chaud" },
+  { id:5,  agence:"John Taylor Luxury RE",           contact:"direction.paris@john-taylor.com",      canal:"Formulaire site + email",                      statut:"Formulaire envoyé",         statutKey:"envoye", priorite:"HAUTE",   action:"⚠️ Email lundi 7/04 9h",               note:"Ouverture agence Rive Gauche",            filtre:"lundi" },
+  { id:6,  agence:"Union Foncière de France",        contact:"recrutement@union-fonciere-france.fr", canal:"Candidature spontanée",                        statut:"Envoyée",                   statutKey:"envoye", priorite:"MOYENNE",  action:"Attendre 10 jours",                   note:"43 av. Hoche 75008",                     filtre:"envoye" },
+  { id:7,  agence:"AGS Immobilier Prestige",         contact:"Vincent Leduc (Gérant)",               canal:"Tél : 01 53 81 02 09",                         statut:"Envoyée",                   statutKey:"envoye", priorite:"MOYENNE",  action:"Appel lundi — confirmer contact",      note:"8 rue Saussier-Leroy 75017",             filtre:"lundi" },
+  { id:8,  agence:"Daniel Féau Conseil Immo.",       contact:"Sophie B.M. (DGA) + Mme Da Costa",    canal:"danielfeau.com/recrutement + LinkedIn",         statut:"À envoyer lundi",           statutKey:"lundi",  priorite:"HAUTE",   action:"Formulaire + LinkedIn 9h–10h",         note:"N°1 luxe depuis 1945",                   filtre:"lundi" },
+  { id:9,  agence:"Emile Garcin",                    contact:"Julien de Mortillet (Dir. Paris)",     canal:"julien.demortillet@emilegarcin.fr",             statut:"À envoyer lundi",           statutKey:"lundi",  priorite:"HAUTE",   action:"Email direct 9h–10h",                  note:"2 postes alternance Paris confirmés",     filtre:"lundi" },
+  { id:10, agence:"Engel & Völkers Paris",           contact:"Lidia Fernandes Oliveira (RH)",        canal:"paris.leads@engelvoelkers.com + LinkedIn",      statut:"À envoyer lundi",           statutKey:"lundi",  priorite:"HAUTE",   action:"Email + LinkedIn 9h–10h",              note:"6 offres actives LinkedIn Paris",         filtre:"lundi" },
+  { id:11, agence:"Propriétés Parisiennes SIR",      contact:"Constans & le Ruyet",                  canal:"sothebysir8@proprietesparisiennes.com",         statut:"À envoyer mardi",           statutKey:"mardi",  priorite:"MOYENNE",  action:"Email fondateurs 9h–10h",              note:"4 agences Paris",                        filtre:"mardi" },
+  { id:12, agence:"Paris Ouest Sotheby's IR",        contact:"Direction Recrutement",                canal:"recrutement@parisouest-sothebysrealty.com",     statut:"À envoyer mardi",           statutKey:"mardi",  priorite:"MOYENNE",  action:"Email + Formulaire site 9h",           note:"Ultra-luxe 16e & Neuilly",               filtre:"mardi" },
+  { id:13, agence:"Vaneau Immobilier",               contact:"Jérôme Quentel (Dir. Développement)",  canal:"jerome.quentel@vaneau.fr",                     statut:"À envoyer mardi",           statutKey:"mardi",  priorite:"MOYENNE",  action:"Email + CC recrutement",               note:"25 agences, 50 ans Paris",               filtre:"mardi" },
+  { id:14, agence:"Kretz Real Estate",               contact:"À identifier (site + LinkedIn)",        canal:"—",                                            statut:"Dossier à préparer",        statutKey:"prep",   priorite:"HAUTE",   action:"Identifier contact + rédiger",         note:"100 rue du Bac 75007",                   filtre:"prep" },
+  { id:15, agence:"Patrice Besse",                   contact:"Via offre LinkedIn active",             canal:"patrice-besse.com/nous-rejoindre/",             statut:"Offre LinkedIn active",     statutKey:"prep",   priorite:"HAUTE",   action:"Postuler sur LinkedIn",                note:"Asst Commercial & Communication",         filtre:"prep" },
+  { id:16, agence:"Paris Attitude",                  contact:"mail@parisattitude.com",               canal:"parisattitude.com/fr/emploi",                  statut:"Offre LinkedIn active",     statutKey:"prep",   priorite:"HAUTE",   action:"Postuler sur LinkedIn",                note:"Agent de visite 1 an",                   filtre:"prep" },
+  { id:17, agence:"Varenne Immobilier",              contact:"Formulaire site",                       canal:"varenne.fr/recrutement",                       statut:"Dossier à préparer",        statutKey:"prep",   priorite:"HAUTE",   action:"Rédiger + postuler",                   note:"6e/7e — biens >950k€",                   filtre:"prep" },
+  { id:18, agence:"District Immobilier",             contact:"contact@district-immo.com",             canal:"contact@district-immo.com",                   statut:"Spontanée à envoyer",       statutKey:"prep",   priorite:"MOYENNE",  action:"Préparer et envoyer",                  note:"Île Saint-Louis, Triangle d'Or",         filtre:"prep" },
+  { id:19, agence:"Polo Properties",                 contact:"contact@polo-properties.com",           canal:"contact@polo-properties.com",                 statut:"Alternance à challenger",   statutKey:"prep",   priorite:"MOYENNE",  action:"Préparer dossier",                     note:"93 rue Fg Saint-Honoré 75008",           filtre:"prep" },
+  { id:20, agence:"Coldwell Banker Europa",          contact:"Via offre LinkedIn",                    canal:"LinkedIn",                                     statut:"Offre à confirmer",         statutKey:"prep",   priorite:"MOYENNE",  action:"Postuler + confirmer",                 note:"Négociateur Immo de Luxe",               filtre:"prep" },
+  { id:21, agence:"Knight Frank France",             contact:"Via annonce agrégée",                   canal:"—",                                            statut:"Annonce à confirmer",       statutKey:"prep",   priorite:"MOYENNE",  action:"Vérifier et postuler",                 note:"Asst commercial prestige",               filtre:"prep" },
+  { id:22, agence:"Marc Foujols",                    contact:"Formulaire site",                       canal:"marcfoujols.com",                              statut:"Alternance à confirmer",    statutKey:"prep",   priorite:"MOYENNE",  action:"Postuler formulaire",                  note:"Trocadéro + Saint-Germain",              filtre:"prep" },
+  { id:23, agence:"Jeanson × Nest Seekers",          contact:"Directrice LinkedIn",                   canal:"LinkedIn",                                     statut:"Offre agent prestige",      statutKey:"prep",   priorite:"MOYENNE",  action:"Identifier + postuler",                note:"20 rue Cambon 75001",                    filtre:"prep" },
+  { id:24, agence:"ESPI Job Dating",                 contact:"paris.sre@groupe-espi.fr",              canal:"Coaching Karima/Amal",                         statut:"⚠️ Avant 30 avril",         statutKey:"plat",   priorite:"—",       action:"Réserver coaching AVANT le 30 avril",  note:"30/04 • 28/05 • 09/07",                 filtre:"plat" },
+  { id:25, agence:"JobTeaser ESPI",                  contact:"—",                                     canal:"JobTeaser",                                    statut:"Compte créé",               statutKey:"plat",   priorite:"—",       action:"Postuler toutes offres pertinentes",   note:"",                                       filtre:"plat" },
+  { id:26, agence:"Foncia",                          contact:"—",                                     canal:"recrutement.foncia.com",                       statut:"À postuler",                statutKey:"plat",   priorite:"—",       action:"Site + JobTeaser",                     note:"Expérience CASA très pertinente",        filtre:"plat" },
+  { id:27, agence:"Crédit Agricole Immobilier",      contact:"—",                                     canal:"Indeed",                                       statut:"À postuler",                statutKey:"plat",   priorite:"—",       action:"Postuler Indeed",                      note:"Bac+3 sept. 2026",                       filtre:"plat" },
+]
+
+const RELANCES = [
+  { date:"Lundi 7 avril 9h",   agence:"Maison Junot",        contact:"Sébastien Kuperfis — LinkedIn",    urgence:"haute" },
+  { date:"Lundi 7 avril 9h",   agence:"John Taylor",          contact:"direction.paris@john-taylor.com",  urgence:"haute" },
+  { date:"~14 avril",           agence:"Barnes International", contact:"Mme Lambert — email",             urgence:"moy"   },
+  { date:"Avant 30 avril",      agence:"ESPI Job Dating",     contact:"Réserver coaching Karima/Amal",    urgence:"moy"   },
+  { date:"~12–15 mai",          agence:"Nouveau Siècle",      contact:"Lola — contact chaud",             urgence:"low"   },
+]
+
+const PLANNING_DATA = {
+  lundi: ["Junot — relance LinkedIn","Daniel Féau — formulaire + LinkedIn","Emile Garcin — email direct","Engel & Völkers — email + LinkedIn","John Taylor — email direction Paris"],
+  mardi: ["Propriétés Parisiennes SIR","Paris Ouest Sotheby's IR","Vaneau — email + CC recrutement"],
+}
+
+const STATUT_OPTIONS = [
+  { key:'chaud',  label:'Contact chaud 🔥' },
+  { key:'envoye', label:'Envoyée' },
+  { key:'lundi',  label:'À envoyer lundi' },
+  { key:'mardi',  label:'À envoyer mardi' },
+  { key:'prep',   label:'Dossier à préparer' },
+  { key:'plat',   label:'Plateforme' },
+]
+
+const DONUT_CONFIG = {
+  chaud:  { label:'Contacts chauds', color:'#4caf7d' },
+  envoye: { label:'Envoyées',        color:'#378add' },
+  lundi:  { label:'Lundi',           color:'#ef9f27' },
+  mardi:  { label:'Mardi',           color:'#d4a040' },
+  prep:   { label:'À préparer',      color:'#7f77dd' },
+  plat:   { label:'Plateformes',     color:'#8a9ab0' },
+}
+
+// ─── STATE ────────────────────────────────────────────
+let agences = []
+let filter  = 'all'
+let search  = ''
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem(DATA_KEY)
+    if (saved) agences = JSON.parse(saved)
+    else agences = JSON.parse(JSON.stringify(AGENCES_DEFAULT))
+  } catch { agences = JSON.parse(JSON.stringify(AGENCES_DEFAULT)) }
+}
+
+function saveData() {
+  localStorage.setItem(DATA_KEY, JSON.stringify(agences))
+}
+
+function updateStatut(id, newKey) {
+  const opt = STATUT_OPTIONS.find(o => o.key === newKey)
+  if (!opt) return
+  agences = agences.map(a =>
+    a.id === id ? { ...a, filtre: newKey, statutKey: newKey, statut: opt.label } : a
+  )
+  saveData()
+  renderTable()
+  renderKPIs()
+  renderDonut()
+}
+
+// ─── AUTH ─────────────────────────────────────────────
+function checkAuth() {
+  if (sessionStorage.getItem(SESSION_KEY) === 'ok') showDashboard()
+}
+
+function showDashboard() {
+  document.getElementById('auth-screen').style.display = 'none'
+  document.getElementById('dashboard').style.display = 'block'
+  loadData()
+  renderAll()
+}
+
+document.getElementById('auth-form').addEventListener('submit', function(e) {
+  e.preventDefault()
+  const input = document.getElementById('pwd-input')
+  const err   = document.getElementById('auth-error')
+  if (input.value === PASSWORD) {
+    sessionStorage.setItem(SESSION_KEY, 'ok')
+    showDashboard()
+  } else {
+    input.classList.add('error')
+    err.textContent = 'Mot de passe incorrect'
+    input.value = ''
+    setTimeout(() => { input.classList.remove('error'); err.textContent = '' }, 2000)
+  }
+})
+
+document.getElementById('logout-btn').addEventListener('click', function() {
+  sessionStorage.removeItem(SESSION_KEY)
+  window.location.reload()
+})
+
+// ─── RENDER ───────────────────────────────────────────
+function renderAll() {
+  renderKPIs()
+  renderDonut()
+  renderBars()
+  renderChips()
+  renderTable()
+  renderRelances()
+  renderPlanning()
+
+  document.getElementById('search-input').addEventListener('input', function(e) {
+    search = e.target.value
+    renderTable()
+  })
+}
+
+// KPIs
+function renderKPIs() {
+  const total    = agences.length
+  const envoyes  = agences.filter(a => ['envoye','chaud','lundi','mardi'].includes(a.filtre)).length
+  const aEnvoyer = agences.filter(a => a.filtre === 'lundi' || a.filtre === 'mardi').length
+  const cibles   = agences.filter(a => a.filtre === 'prep').length
+  const chauds   = agences.filter(a => a.filtre === 'chaud').length
+
+  const kpis = [
+    { val: total,    label:'Agences ciblées',         sub:`immobilier prestige Paris`,      color:'#c9a84c' },
+    { val: envoyes,  label:'Envoyées / En cours',     sub:`dont ${chauds} contacts chauds 🔥`, color:'#378add' },
+    { val: aEnvoyer, label:'À envoyer cette semaine', sub:'lundi 7 + mardi 8 avril',        color:'#ef9f27' },
+    { val: cibles,   label:'Nouvelles cibles',        sub:'dossiers à préparer',             color:'#4caf7d' },
+    { val: '43%',    label:'Taux de retour',          sub:'3 réponses / 7 envois',           color:'#2da89a' },
+  ]
+
+  const strip = document.getElementById('kpi-strip')
+  strip.innerHTML = kpis.map((k, i) => `
+    <div class="kpi-card" style="--c:${k.color}">
+      <div class="kpi-val" style="color:${k.color}">${k.val}</div>
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-sub">${k.sub}</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:${k.color};opacity:0.7"></div>
+    </div>
+  `).join('')
+}
+
+// Donut
+function renderDonut() {
+  const counts = {}
+  agences.forEach(a => { counts[a.filtre] = (counts[a.filtre] || 0) + 1 })
+  const total = agences.length
+  const cx = 55, cy = 55, r = 38, ri = 22
+  let startAngle = -Math.PI / 2
+  let paths = ''
+  let legend = ''
+
+  const entries = Object.entries(counts).filter(([,v]) => v > 0)
+  entries.forEach(([key, val]) => {
+    const angle    = (val / total) * 2 * Math.PI
+    const endAngle = startAngle + angle
+    const x1  = cx + r  * Math.cos(startAngle), y1  = cy + r  * Math.sin(startAngle)
+    const x2  = cx + r  * Math.cos(endAngle),   y2  = cy + r  * Math.sin(endAngle)
+    const xi1 = cx + ri * Math.cos(startAngle), yi1 = cy + ri * Math.sin(startAngle)
+    const xi2 = cx + ri * Math.cos(endAngle),   yi2 = cy + ri * Math.sin(endAngle)
+    const large = angle > Math.PI ? 1 : 0
+    const d = `M${x1},${y1} A${r},${r},0,${large},1,${x2},${y2} L${xi2},${yi2} A${ri},${ri},0,${large},0,${xi1},${yi1} Z`
+    const cfg = DONUT_CONFIG[key] || { color:'#8a9ab0', label: key }
+    paths += `<path d="${d}" fill="${cfg.color}" opacity="0.9" stroke="#131c26" stroke-width="1.5"><title>${cfg.label} : ${val}</title></path>`
+    legend += `<div class="legend-row"><span class="legend-dot" style="background:${cfg.color}"></span><span class="legend-label">${cfg.label}</span><span class="legend-val">${val}</span></div>`
+    startAngle = endAngle
+  })
+
+  paths += `
+    <text x="${cx}" y="${cy - 6}" text-anchor="middle" fill="#f5f3ee"
+      font-family="Syne, sans-serif" font-size="18" font-weight="800">${total}</text>
+    <text x="${cx}" y="${cy + 10}" text-anchor="middle" fill="#8a9ab0"
+      font-size="8" font-family="DM Sans, sans-serif">agences</text>
+  `
+  document.getElementById('donut-svg').innerHTML = paths
+  document.getElementById('donut-legend').innerHTML = legend
+}
+
+// Bars
+function renderBars() {
+  const bars = [
+    { label:'Priorité HAUTE',   val:13, max:20, color:'#e24b4a' },
+    { label:'Priorité MOYENNE', val:11, max:20, color:'#ef9f27' },
+    { label:'Plateformes',      val:4,  max:20, color:'#7f77dd' },
+    { label:'Contacts chauds',  val:3,  max:20, color:'#2da89a' },
+  ]
+  document.getElementById('bar-chart').innerHTML = bars.map(b => `
+    <div class="bar-row">
+      <span class="bar-label">${b.label}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${(b.val/b.max)*100}%;background:${b.color}"></div></div>
+      <span class="bar-num">${b.val}</span>
+    </div>
+  `).join('')
+}
+
+// Chips
+function renderChips() {
+  const chips = [
+    { key:'all',    label:'Tout' },
+    { key:'chaud',  label:'Contacts chauds 🔥' },
+    { key:'envoye', label:'Envoyées' },
+    { key:'lundi',  label:'À envoyer lundi' },
+    { key:'mardi',  label:'À envoyer mardi' },
+    { key:'prep',   label:'À préparer' },
+    { key:'plat',   label:'Plateformes' },
+  ]
+  const counts = { all: agences.length }
+  agences.forEach(a => { counts[a.filtre] = (counts[a.filtre] || 0) + 1 })
+
+  document.getElementById('chips').innerHTML = chips.map(c => `
+    <button class="chip${filter === c.key ? ' active' : ''}" data-key="${c.key}">
+      ${c.label}
+      ${counts[c.key] !== undefined ? `<span class="chip-count">${counts[c.key]}</span>` : ''}
+    </button>
+  `).join('')
+
+  document.querySelectorAll('.chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filter = btn.dataset.key
+      renderChips()
+      renderTable()
+    })
+  })
+}
+
+// Table
+function renderTable() {
+  const q = search.toLowerCase()
+  const filtered = agences.filter(a => {
+    const mF = filter === 'all' || a.filtre === filter
+    const mS = !q || a.agence.toLowerCase().includes(q) || a.contact.toLowerCase().includes(q) || a.action.toLowerCase().includes(q)
+    return mF && mS
+  })
+
+  document.getElementById('table-count').textContent =
+    `${filtered.length} entrée${filtered.length > 1 ? 's' : ''}`
+
+  const selectOptions = STATUT_OPTIONS.map(o =>
+    `<option value="${o.key}">${o.label}</option>`
+  ).join('')
+
+  const prioCls = {
+    'HAUTE':   'badge prio-HAUTE',
+    'MOYENNE': 'badge prio-MOYENNE',
+    '—':       'badge prio-dash',
+  }
+
+  document.getElementById('table-body').innerHTML = filtered.length ? filtered.map(a => `
+    <tr>
+      <td class="td-id">${a.id}</td>
+      <td>
+        <div class="td-agence">${esc(a.agence)}</div>
+        ${a.note ? `<div class="td-note">${esc(a.note)}</div>` : ''}
+      </td>
+      <td class="td-contact">${esc(a.contact)}</td>
+      <td>
+        <div class="badge badge-${a.statutKey}">
+          <select data-id="${a.id}" class="statut-select">
+            ${STATUT_OPTIONS.map(o =>
+              `<option value="${o.key}"${o.key === a.statutKey ? ' selected' : ''}>${o.label}</option>`
+            ).join('')}
+          </select>
+        </div>
+      </td>
+      <td><span class="${prioCls[a.priorite] || 'badge prio-dash'}">${a.priorite}</span></td>
+      <td class="td-action">${esc(a.action)}</td>
+    </tr>
+  `).join('') : `<tr class="empty-row"><td colspan="6">Aucun résultat</td></tr>`
+
+  document.querySelectorAll('.statut-select').forEach(sel => {
+    sel.addEventListener('change', function() {
+      updateStatut(parseInt(this.dataset.id), this.value)
+    })
+  })
+}
+
+// Relances
+function renderRelances() {
+  const dotColor  = { haute:'#e24b4a', moy:'#ef9f27', low:'#8a9ab0' }
+  const dateColor = { haute:'#f07070', moy:'#f0b84a', low:'#8a9ab0' }
+
+  document.getElementById('relance-list').innerHTML = RELANCES.map(r => `
+    <div class="relance-item">
+      <div class="relance-dot" style="background:${dotColor[r.urgence]}"></div>
+      <div>
+        <div class="relance-agence">${esc(r.agence)}</div>
+        <div class="relance-contact">${esc(r.contact)}</div>
+        <div class="relance-date" style="color:${dateColor[r.urgence]}">${esc(r.date)}</div>
+      </div>
+    </div>
+  `).join('')
+}
+
+// Planning
+function renderPlanning() {
+  let checked = {}
+  try { checked = JSON.parse(localStorage.getItem(PLAN_KEY) || '{}') } catch {}
+
+  const makeItems = (tasks, prefix) => tasks.map((text, i) => {
+    const id = `${prefix}${i}`
+    const done = !!checked[id]
+    return `
+      <label class="planning-item">
+        <input type="checkbox" data-id="${id}" ${done ? 'checked' : ''}>
+        <span class="planning-text${done ? ' done' : ''}">${esc(text)}</span>
+      </label>
+    `
+  }).join('')
+
+  document.getElementById('planning-body').innerHTML = `
+    <div class="planning-block lundi">
+      <div class="planning-day">Lundi 7 avril — 9h à 10h</div>
+      ${makeItems(PLANNING_DATA.lundi, 'l')}
+    </div>
+    <div class="planning-block mardi">
+      <div class="planning-day">Mardi 8 avril — 9h à 10h</div>
+      ${makeItems(PLANNING_DATA.mardi, 'm')}
+    </div>
+  `
+
+  document.querySelectorAll('#planning-body input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function() {
+      const id = this.dataset.id
+      try { checked = JSON.parse(localStorage.getItem(PLAN_KEY) || '{}') } catch { checked = {} }
+      checked[id] = this.checked
+      localStorage.setItem(PLAN_KEY, JSON.stringify(checked))
+      const span = this.nextElementSibling
+      span.classList.toggle('done', this.checked)
+    })
+  })
+}
+
+// Utility
+function esc(str) {
+  if (!str) return ''
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+}
+
+// ─── INIT ─────────────────────────────────────────────
+checkAuth()
+document.getElementById('pwd-input').focus()
+</script>
+</body>
+</html>
