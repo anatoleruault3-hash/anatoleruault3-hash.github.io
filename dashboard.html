@@ -8,91 +8,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0b1118; color: #f5f3ee; font-family: 'DM Sans', sans-serif; min-height: 100vh; font-size: 14px; line-height: 1.5; }
 
-    body {
-      background: #0b1118;
-      color: #f5f3ee;
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    /* ─── AUTH SCREEN ─── */
-    #auth-screen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .auth-box {
-      width: 100%;
-      max-width: 360px;
-      padding: 0 16px;
-    }
-    .auth-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: #c9a84c;
-      text-align: center;
-      margin-bottom: 4px;
-    }
-    .auth-sub {
-      color: #8a9ab0;
-      font-size: 13px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .auth-card {
-      background: #131c26;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 24px;
-    }
-    .auth-label {
-      display: block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8a9ab0;
-      margin-bottom: 8px;
-    }
-    .auth-input {
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 10px 16px;
-      color: #fff;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 13px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    /* ─── AUTH ─── */
+    #auth-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .auth-box { width: 100%; max-width: 360px; padding: 0 16px; }
+    .auth-title { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; color: #c9a84c; text-align: center; margin-bottom: 4px; }
+    .auth-sub { color: #8a9ab0; font-size: 13px; text-align: center; margin-bottom: 24px; }
+    .auth-card { background: #131c26; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; }
+    .auth-label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin-bottom: 8px; }
+    .auth-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 16px; color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 13px; outline: none; transition: border-color 0.2s; }
     .auth-input:focus { border-color: rgba(201,168,76,0.5); }
     .auth-input.error { border-color: rgba(239,68,68,0.6); }
-    .auth-error {
-      color: #f87171;
-      font-size: 12px;
-      margin-top: 8px;
-      min-height: 18px;
-    }
-    .auth-btn {
-      width: 100%;
-      margin-top: 16px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.3);
-      color: #c9a84c;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+    .auth-error { color: #f87171; font-size: 12px; margin-top: 8px; min-height: 18px; }
+    .auth-btn { width: 100%; margin-top: 16px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #c9a84c; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; padding: 10px; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
     .auth-btn:hover { background: rgba(201,168,76,0.25); }
 
     /* ─── DASHBOARD ─── */
@@ -100,113 +29,49 @@
     .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 64px; }
 
     /* Header */
-    .dash-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 32px 0 32px;
-      margin-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .dash-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
+    .dash-header { display: flex; align-items: flex-end; justify-content: space-between; padding: 32px 0; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 16px; }
+    .dash-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
     .dash-title-gold { color: #c9a84c; }
-    .dash-meta {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: #8a9ab0;
-      letter-spacing: 0.08em;
-      margin-top: 8px;
-    }
-    .dash-contact {
-      text-align: right;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: #8a9ab0;
-    }
+    .dash-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8a9ab0; letter-spacing: 0.08em; margin-top: 8px; }
+    .header-right { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+    .dash-contact { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8a9ab0; }
     .dash-contact a { color: #c9a84c; text-decoration: none; }
     .dash-contact a:hover { text-decoration: underline; }
-    .dash-update { opacity: 0.6; margin-top: 4px; }
+    .header-btns { display: flex; gap: 8px; }
+    .btn-header { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+    .btn-add { background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.4); color: #c9a84c; }
+    .btn-add:hover { background: rgba(201,168,76,0.25); }
+    .btn-csv { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #8a9ab0; }
+    .btn-csv:hover { border-color: rgba(255,255,255,0.25); color: #f5f3ee; }
+
+    /* Progress bar */
+    .progress-wrap { margin-bottom: 16px; background: #131c26; border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 14px 20px; }
+    .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .progress-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #8a9ab0; }
+    .progress-count { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: #c9a84c; }
+    .progress-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 9999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #c9a84c, #ef9f27); border-radius: 9999px; transition: width 0.6s ease; }
+    .progress-steps { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+    .progress-step { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8a9ab0; }
+    .progress-step span { color: #f5f3ee; font-weight: 500; }
 
     /* KPI Strip */
-    .kpi-strip {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      background: rgba(255,255,255,0.05);
-      gap: 1px;
-    }
-    .kpi-card {
-      background: #131c26;
-      padding: 20px;
-      position: relative;
-    }
-    .kpi-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      opacity: 0.7;
-    }
-    .kpi-val {
-      font-family: 'Syne', sans-serif;
-      font-size: 36px;
-      font-weight: 800;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
+    .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; margin-bottom: 16px; background: rgba(255,255,255,0.05); gap: 1px; }
+    .kpi-card { background: #131c26; padding: 20px; position: relative; }
+    .kpi-val { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
     .kpi-label { color: #8a9ab0; font-size: 11px; line-height: 1.3; }
-    .kpi-sub {
-      color: #8a9ab0;
-      font-size: 10px;
-      margin-top: 2px;
-      opacity: 0.6;
-      font-family: 'IBM Plex Mono', monospace;
-    }
+    .kpi-sub { color: #8a9ab0; font-size: 10px; margin-top: 2px; opacity: 0.6; font-family: 'IBM Plex Mono', monospace; }
 
-    /* Charts row */
-    .charts-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .card {
-      background: #131c26;
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .card-title {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8a9ab0;
-      margin-bottom: 16px;
-    }
-
-    /* Donut */
+    /* Charts */
+    .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .card { background: #131c26; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; }
+    .card-title { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin-bottom: 16px; }
     .donut-wrap { display: flex; align-items: center; gap: 20px; }
     .donut-legend { display: flex; flex-direction: column; gap: 6px; font-size: 11px; }
     .legend-row { display: flex; align-items: center; gap: 8px; }
     .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
     .legend-label { color: #8a9ab0; }
     .legend-val { font-family: 'IBM Plex Mono', monospace; font-size: 10px; margin-left: auto; padding-left: 8px; }
-
-    /* Bar chart */
     .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 11px; }
     .bar-row:last-child { margin-bottom: 0; }
     .bar-label { width: 120px; color: #8a9ab0; flex-shrink: 0; }
@@ -215,184 +80,85 @@
     .bar-num { font-family: 'IBM Plex Mono', monospace; color: #8a9ab0; width: 16px; text-align: right; }
 
     /* Main grid */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 16px;
-      align-items: start;
-    }
+    .main-grid { display: grid; grid-template-columns: 1fr 320px; gap: 16px; align-items: start; }
     .sidebar { display: flex; flex-direction: column; gap: 16px; }
 
     /* Table card */
-    .table-card {
-      background: #131c26;
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .table-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .table-header-title {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8a9ab0;
-    }
+    .table-card { background: #131c26; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; }
+    .table-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .table-header-title { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; }
     .table-count { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8a9ab0; }
-
-    /* Chip filters */
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .chip {
-      padding: 4px 12px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 500;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #8a9ab0;
-      cursor: pointer;
-      background: transparent;
-      transition: all 0.15s;
-      font-family: 'DM Sans', sans-serif;
-    }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .chip { padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 500; border: 1px solid rgba(255,255,255,0.1); color: #8a9ab0; cursor: pointer; background: transparent; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
     .chip:hover { border-color: rgba(201,168,76,0.5); color: #c9a84c; }
-    .chip.active {
-      background: rgba(201,168,76,0.15);
-      border-color: #c9a84c;
-      color: #c9a84c;
-      font-weight: 600;
-    }
-    .chip-count {
-      display: inline-block;
-      background: rgba(255,255,255,0.1);
-      border-radius: 9999px;
-      padding: 0 5px;
-      font-size: 9px;
-      margin-left: 5px;
-    }
-
-    /* Search */
+    .chip.active { background: rgba(201,168,76,0.15); border-color: #c9a84c; color: #c9a84c; font-weight: 600; }
+    .chip-count { display: inline-block; background: rgba(255,255,255,0.1); border-radius: 9999px; padding: 0 5px; font-size: 9px; margin-left: 5px; }
     .search-wrap { padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .search-input {
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 13px;
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .search-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 12px; font-size: 13px; color: #fff; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
     .search-input::placeholder { color: #8a9ab0; }
     .search-input:focus { border-color: rgba(201,168,76,0.5); }
-
-    /* Table */
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th {
-      text-align: left;
-      padding: 10px 16px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8a9ab0;
-      white-space: nowrap;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+    th { text-align: left; padding: 10px 16px; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    td { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
     tr:hover td { background: rgba(255,255,255,0.02); }
     tr:last-child td { border-bottom: none; }
-
+    tr.overdue-row td { background: rgba(239,68,68,0.04); }
+    tr.overdue-row:hover td { background: rgba(239,68,68,0.07); }
     .td-id { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8a9ab0; }
-    .td-agence { font-weight: 500; color: #fff; }
+    .td-agence { font-weight: 500; color: #fff; display: flex; align-items: center; gap: 6px; }
     .td-note { font-size: 11px; color: #8a9ab0; margin-top: 2px; }
     .td-contact { font-size: 12px; color: #8a9ab0; max-width: 160px; }
+    .td-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8a9ab0; white-space: nowrap; }
+    .days-badge { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 1px 6px; border-radius: 4px; margin-top: 3px; white-space: nowrap; }
+    .days-ok { background: rgba(59,130,246,0.12); color: #60a5fa; }
+    .days-warn { background: rgba(249,115,22,0.15); color: #fb923c; }
+    .days-urgent { background: rgba(239,68,68,0.15); color: #f87171; }
     .td-action { font-size: 12px; color: #8a9ab0; max-width: 200px; }
+    .td-actions { white-space: nowrap; }
+    .row-btn { background: none; border: none; cursor: pointer; padding: 4px; border-radius: 6px; transition: background 0.15s; line-height: 0; }
+    .row-btn:hover { background: rgba(255,255,255,0.08); }
+    .row-btn svg { width: 14px; height: 14px; }
+    .btn-edit svg { color: #8a9ab0; }
+    .btn-edit:hover svg { color: #c9a84c; }
+    .btn-link svg { color: #8a9ab0; }
+    .btn-link:hover svg { color: #60a5fa; }
+    .btn-notes svg { color: #8a9ab0; }
+    .btn-notes:hover svg { color: #c084fc; }
+    .btn-del svg { color: #8a9ab0; }
+    .btn-del:hover svg { color: #f87171; }
     .empty-row td { text-align: center; padding: 40px; color: #8a9ab0; font-size: 13px; }
 
     /* Badges */
-    .badge {
-      display: inline-flex;
-      border-radius: 9999px;
-      padding: 2px 8px;
-      font-size: 11px;
-      font-weight: 600;
-      border: 1px solid;
-      white-space: nowrap;
-    }
-    .badge select {
-      background: transparent;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      color: inherit;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
-      -webkit-appearance: none;
-      appearance: none;
-    }
+    .badge { display: inline-flex; border-radius: 9999px; padding: 2px 8px; font-size: 11px; font-weight: 600; border: 1px solid; white-space: nowrap; }
+    .badge select { background: transparent; border: none; outline: none; cursor: pointer; color: inherit; font-family: inherit; font-size: inherit; font-weight: inherit; -webkit-appearance: none; appearance: none; }
     .badge select option { background: #131c26; color: #fff; }
-
     .badge-chaud  { background: rgba(34,197,94,0.15);   color: #4ade80; border-color: rgba(34,197,94,0.25); }
     .badge-envoye { background: rgba(59,130,246,0.15);  color: #60a5fa; border-color: rgba(59,130,246,0.25); }
     .badge-lundi  { background: rgba(249,115,22,0.15);  color: #fb923c; border-color: rgba(249,115,22,0.25); }
     .badge-mardi  { background: rgba(234,179,8,0.15);   color: #facc15; border-color: rgba(234,179,8,0.25); }
     .badge-prep   { background: rgba(168,85,247,0.15);  color: #c084fc; border-color: rgba(168,85,247,0.25); }
     .badge-plat   { background: rgba(255,255,255,0.1);  color: #8a9ab0; border-color: rgba(255,255,255,0.15); }
-
     .prio-HAUTE   { background: rgba(239,68,68,0.15);   color: #f87171; border-color: rgba(239,68,68,0.25); font-family: 'IBM Plex Mono', monospace; }
     .prio-MOYENNE { background: rgba(249,115,22,0.15);  color: #fb923c; border-color: rgba(249,115,22,0.25); font-family: 'IBM Plex Mono', monospace; }
     .prio-dash    { color: #8a9ab0; border-color: transparent; background: transparent; font-family: 'IBM Plex Mono', monospace; }
 
     /* Sidebar cards */
-    .relance-header, .planning-header {
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8a9ab0;
-    }
-    .relance-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 14px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
+    .relance-header, .planning-header { padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; }
+    .relance-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); }
     .relance-item:last-child { border-bottom: none; }
+    .relance-item.overdue { background: rgba(239,68,68,0.05); }
     .relance-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
     .relance-agence { font-weight: 500; font-size: 13px; color: #fff; }
     .relance-contact { font-size: 11px; color: #8a9ab0; margin-top: 2px; }
     .relance-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; margin-top: 4px; }
+    .overdue-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #f87171; background: rgba(239,68,68,0.15); border-radius: 4px; padding: 1px 5px; margin-left: 6px; vertical-align: middle; }
 
     /* Planning */
     .planning-body { padding: 4px; }
     .planning-block { padding: 12px 16px; margin-bottom: 4px; }
     .planning-block:last-child { margin-bottom: 0; }
-    .planning-day {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
+    .planning-day { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
     .planning-block.lundi { border-left: 2px solid rgba(59,130,246,0.6); background: rgba(59,130,246,0.05); }
     .planning-block.lundi .planning-day { color: #60a5fa; }
     .planning-block.mardi { border-left: 2px solid rgba(249,115,22,0.6); background: rgba(249,115,22,0.05); }
@@ -404,43 +170,84 @@
     .planning-text.done { color: #8a9ab0; text-decoration: line-through; }
 
     /* Footer */
-    .dash-footer {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: #8a9ab0;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .logout-btn {
-      background: none;
-      border: none;
-      color: #8a9ab0;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      cursor: pointer;
-      transition: color 0.15s;
-    }
+    .dash-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8a9ab0; flex-wrap: wrap; gap: 8px; }
+    .logout-btn { background: none; border: none; color: #8a9ab0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; cursor: pointer; transition: color 0.15s; }
     .logout-btn:hover { color: #c9a84c; }
 
+    /* ─── MODAL ─── */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(4px); }
+    .modal-overlay.hidden { display: none; }
+    .modal-box { background: #131c26; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .modal-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #f5f3ee; }
+    .modal-close { background: none; border: none; color: #8a9ab0; cursor: pointer; font-size: 20px; line-height: 1; padding: 4px; border-radius: 6px; transition: color 0.15s; }
+    .modal-close:hover { color: #f5f3ee; }
+    .modal-body { padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .modal-field { display: flex; flex-direction: column; gap: 6px; }
+    .modal-field.full { grid-column: 1 / -1; }
+    .modal-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; }
+    .modal-input, .modal-select, .modal-textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 9px 12px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s; }
+    .modal-input:focus, .modal-select:focus, .modal-textarea:focus { border-color: rgba(201,168,76,0.5); }
+    .modal-select option { background: #131c26; }
+    .modal-textarea { resize: vertical; min-height: 80px; }
+    .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .btn-cancel { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #8a9ab0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; padding: 9px 18px; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    .btn-cancel:hover { border-color: rgba(255,255,255,0.2); color: #f5f3ee; }
+    .btn-save { background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4); color: #c9a84c; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; padding: 9px 18px; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    .btn-save:hover { background: rgba(201,168,76,0.25); }
+
+    /* ─── SIDE PANEL (notes) ─── */
+    .panel-overlay { position: fixed; inset: 0; z-index: 90; display: flex; justify-content: flex-end; }
+    .panel-overlay.hidden { display: none; }
+    .panel-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+    .panel-box { position: relative; width: 400px; max-width: 100%; background: #131c26; border-left: 1px solid rgba(255,255,255,0.1); height: 100vh; overflow-y: auto; display: flex; flex-direction: column; }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
+    .panel-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: #f5f3ee; }
+    .panel-subtitle { font-size: 12px; color: #8a9ab0; margin-top: 2px; }
+    .panel-close { background: none; border: none; color: #8a9ab0; cursor: pointer; font-size: 20px; line-height: 1; padding: 4px; border-radius: 6px; transition: color 0.15s; }
+    .panel-close:hover { color: #f5f3ee; }
+    .panel-body { padding: 20px 24px; flex: 1; display: flex; flex-direction: column; gap: 20px; }
+    .panel-section-title { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8a9ab0; margin-bottom: 10px; }
+    .panel-notes-area { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; color: #f5f3ee; font-family: 'DM Sans', sans-serif; font-size: 13px; line-height: 1.6; outline: none; resize: vertical; min-height: 160px; transition: border-color 0.2s; }
+    .panel-notes-area:focus { border-color: rgba(201,168,76,0.4); }
+    .panel-save-btn { align-self: flex-start; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #c9a84c; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+    .panel-save-btn:hover { background: rgba(201,168,76,0.25); }
+    .panel-save-btn.saved { background: rgba(76,175,109,0.15); border-color: rgba(76,175,109,0.3); color: #4caf7d; }
+    .history-list { display: flex; flex-direction: column; gap: 6px; }
+    .history-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 8px; font-size: 12px; }
+    .history-date { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #8a9ab0; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+    .history-arrow { color: #8a9ab0; margin: 0 2px; }
+    .history-empty { color: #8a9ab0; font-size: 12px; font-style: italic; }
+    .panel-info-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 12px; }
+    .panel-info-key { color: #8a9ab0; white-space: nowrap; }
+    .panel-info-val { color: #f5f3ee; word-break: break-all; }
+    .panel-info-val a { color: #60a5fa; text-decoration: none; }
+    .panel-info-val a:hover { text-decoration: underline; }
+
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
       .main-grid { grid-template-columns: 1fr; }
       .kpi-strip { grid-template-columns: repeat(3, 1fr); }
     }
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       .charts-row { grid-template-columns: 1fr; }
       .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-field.full { grid-column: 1; }
+      .panel-box { width: 100%; }
+      .th-hide, .td-hide { display: none; }
+      .dash-title { font-size: 20px; }
+      .header-btns { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 12px 48px; }
+      .kpi-strip { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- AUTH -->
 <div id="auth-screen">
   <div class="auth-box">
     <h1 class="auth-title">Dashboard</h1>
@@ -448,13 +255,7 @@
     <div class="auth-card">
       <form id="auth-form">
         <label class="auth-label" for="pwd-input">Mot de passe</label>
-        <input
-          id="pwd-input"
-          type="password"
-          class="auth-input"
-          placeholder="••••••••"
-          autocomplete="current-password"
-        >
+        <input id="pwd-input" type="password" class="auth-input" placeholder="••••••••" autocomplete="current-password">
         <p class="auth-error" id="auth-error"></p>
         <button type="submit" class="auth-btn">Accéder</button>
       </form>
@@ -466,25 +267,43 @@
 <div id="dashboard">
   <div class="container">
 
-    <!-- Header -->
     <div class="dash-header">
       <div>
-        <div class="dash-title">
-          Candidatures <span class="dash-title-gold">Immobilier Prestige</span>
-        </div>
+        <div class="dash-title">Candidatures <span class="dash-title-gold">Immobilier Prestige</span></div>
         <div class="dash-meta">ANATOLE RUAULT · BACHELOR ESPI PARIS · ALTERNANCE SEPT. 2026</div>
       </div>
-      <div class="dash-contact">
-        <div>anatoleruault3@gmail.com</div>
-        <a href="https://anatoleruault.works" target="_blank">anatoleruault.works</a>
-        <div class="dash-update">Mis à jour : 5 avril 2026</div>
+      <div class="header-right">
+        <div class="header-btns">
+          <button class="btn-header btn-add" id="btn-add-company">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Ajouter
+          </button>
+          <button class="btn-header btn-csv" id="btn-export-csv">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Export CSV
+          </button>
+        </div>
+        <div class="dash-contact">
+          <div>anatoleruault3@gmail.com</div>
+          <a href="https://anatoleruault.works" target="_blank">anatoleruault.works</a>
+        </div>
       </div>
     </div>
 
-    <!-- KPI Strip -->
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="progress-label">Progression objectif candidatures</span>
+        <span class="progress-count" id="progress-count"></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-steps" id="progress-steps"></div>
+    </div>
+
+    <!-- KPIs -->
     <div class="kpi-strip" id="kpi-strip"></div>
 
-    <!-- Charts row -->
+    <!-- Charts -->
     <div class="charts-row">
       <div class="card">
         <div class="card-title">Répartition par statut</div>
@@ -501,7 +320,6 @@
 
     <!-- Main grid -->
     <div class="main-grid">
-      <!-- Table -->
       <div class="table-card">
         <div class="table-header">
           <span class="table-header-title">Toutes les candidatures</span>
@@ -509,12 +327,7 @@
         </div>
         <div class="chips" id="chips"></div>
         <div class="search-wrap">
-          <input
-            type="text"
-            class="search-input"
-            id="search-input"
-            placeholder="Rechercher une agence, un contact..."
-          >
+          <input type="text" class="search-input" id="search-input" placeholder="Rechercher une agence, un contact...">
         </div>
         <div class="table-wrap">
           <table>
@@ -522,10 +335,12 @@
               <tr>
                 <th>#</th>
                 <th>Agence</th>
-                <th>Contact</th>
+                <th class="th-hide">Contact</th>
                 <th>Statut</th>
-                <th>Priorité</th>
+                <th class="th-hide">Priorité</th>
+                <th>Envoyée le</th>
                 <th>Prochaine action</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="table-body"></tbody>
@@ -533,7 +348,6 @@
         </div>
       </div>
 
-      <!-- Sidebar -->
       <div class="sidebar">
         <div class="table-card">
           <div class="relance-header">Relances à ne pas rater</div>
@@ -546,12 +360,102 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <div class="dash-footer">
       <span>Anatole Ruault · Bachelor Gestionnaire d'Affaires Immobilières ESPI Paris</span>
       <button class="logout-btn" id="logout-btn">Se déconnecter</button>
     </div>
+  </div>
+</div>
 
+<!-- MODAL AJOUTER / MODIFIER -->
+<div class="modal-overlay hidden" id="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">Ajouter une agence</span>
+      <button class="modal-close" id="modal-close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-field full">
+        <label class="modal-label">Agence *</label>
+        <input class="modal-input" id="f-agence" type="text" placeholder="Nom de l'agence">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Contact</label>
+        <input class="modal-input" id="f-contact" type="text" placeholder="Nom, email ou poste">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Canal</label>
+        <input class="modal-input" id="f-canal" type="text" placeholder="Email, formulaire, LinkedIn...">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Statut</label>
+        <select class="modal-select" id="f-statut">
+          <option value="prep">Dossier à préparer</option>
+          <option value="lundi">À envoyer lundi</option>
+          <option value="mardi">À envoyer mardi</option>
+          <option value="envoye">Envoyée</option>
+          <option value="chaud">Contact chaud 🔥</option>
+          <option value="plat">Plateforme</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Priorité</label>
+        <select class="modal-select" id="f-priorite">
+          <option value="HAUTE">HAUTE</option>
+          <option value="MOYENNE">MOYENNE</option>
+          <option value="—">—</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">Date d'envoi</label>
+        <input class="modal-input" id="f-date" type="date">
+      </div>
+      <div class="modal-field full">
+        <label class="modal-label">URL (formulaire / offre / LinkedIn)</label>
+        <input class="modal-input" id="f-url" type="url" placeholder="https://...">
+      </div>
+      <div class="modal-field full">
+        <label class="modal-label">Prochaine action</label>
+        <input class="modal-input" id="f-action" type="text" placeholder="Relance lundi 9h, appel...">
+      </div>
+      <div class="modal-field full">
+        <label class="modal-label">Note courte</label>
+        <input class="modal-input" id="f-note" type="text" placeholder="Info rapide visible dans le tableau">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="btn-cancel">Annuler</button>
+      <button class="btn-save" id="btn-save-modal">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIDE PANEL NOTES -->
+<div class="panel-overlay hidden" id="panel-overlay">
+  <div class="panel-backdrop" id="panel-backdrop"></div>
+  <div class="panel-box">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title" id="panel-agence-name"></div>
+        <div class="panel-subtitle" id="panel-agence-sub"></div>
+      </div>
+      <button class="panel-close" id="panel-close">×</button>
+    </div>
+    <div class="panel-body">
+      <div>
+        <div class="panel-section-title">Informations</div>
+        <div class="panel-info-grid" id="panel-info"></div>
+      </div>
+      <div>
+        <div class="panel-section-title">Notes détaillées</div>
+        <textarea class="panel-notes-area" id="panel-notes" placeholder="Compte-rendu entretien, infos sur l'agence, impressions..."></textarea>
+        <button class="panel-save-btn" id="panel-save-btn" style="margin-top:10px">Sauvegarder</button>
+      </div>
+      <div>
+        <div class="panel-section-title">Historique des statuts</div>
+        <div class="history-list" id="history-list"></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -561,44 +465,45 @@ const PASSWORD    = 'alternance2026' // ← change ce mot de passe
 const SESSION_KEY = 'dashboard-auth'
 const DATA_KEY    = 'candidatures-data'
 const PLAN_KEY    = 'planning-checked'
+const GOAL        = 30 // objectif candidatures envoyées
 
 // ─── DATA ─────────────────────────────────────────────
 const AGENCES_DEFAULT = [
-  { id:1,  agence:"Maison Junot",                    contact:"Sébastien Kuperfis (Président)",       canal:"Formulaire junot.fr",                          statut:"Envoyée — en attente",      statutKey:"envoye", priorite:"HAUTE",   action:"Relance LinkedIn lun. 7/04 9h",        note:"Offre alternance active confirmée",       filtre:"envoye" },
-  { id:2,  agence:"De Ferla Immobilier",             contact:"recrutement@deferla.com",              canal:"Formulaire deferla.com",                       statut:"Envoyée",                   statutKey:"envoye", priorite:"MOYENNE",  action:"Attendre 10 jours",                   note:"Candidature spontanée",                  filtre:"envoye" },
-  { id:3,  agence:"Barnes International",            contact:"Mme Lambert (RH)",                     canal:"recrutement@barnes-international.com",          statut:"Contact chaud 🔥",          statutKey:"chaud",  priorite:"HAUTE",   action:"Relance email ~14 avril",              note:"Réponse positive — recrutement à reprendre", filtre:"chaud" },
-  { id:4,  agence:"Nouveau Siècle",                  contact:"Lola (job dating ESPI)",               canal:"Job dating ESPI",                              statut:"Entretien positif 🔥",      statutKey:"chaud",  priorite:"HAUTE",   action:"Relance ~12–15 mai",                  note:"Contact chaud confirmé",                 filtre:"chaud" },
-  { id:5,  agence:"John Taylor Luxury RE",           contact:"direction.paris@john-taylor.com",      canal:"Formulaire site + email",                      statut:"Formulaire envoyé",         statutKey:"envoye", priorite:"HAUTE",   action:"⚠️ Email lundi 7/04 9h",               note:"Ouverture agence Rive Gauche",            filtre:"lundi" },
-  { id:6,  agence:"Union Foncière de France",        contact:"recrutement@union-fonciere-france.fr", canal:"Candidature spontanée",                        statut:"Envoyée",                   statutKey:"envoye", priorite:"MOYENNE",  action:"Attendre 10 jours",                   note:"43 av. Hoche 75008",                     filtre:"envoye" },
-  { id:7,  agence:"AGS Immobilier Prestige",         contact:"Vincent Leduc (Gérant)",               canal:"Tél : 01 53 81 02 09",                         statut:"Envoyée",                   statutKey:"envoye", priorite:"MOYENNE",  action:"Appel lundi — confirmer contact",      note:"8 rue Saussier-Leroy 75017",             filtre:"lundi" },
-  { id:8,  agence:"Daniel Féau Conseil Immo.",       contact:"Sophie B.M. (DGA) + Mme Da Costa",    canal:"danielfeau.com/recrutement + LinkedIn",         statut:"À envoyer lundi",           statutKey:"lundi",  priorite:"HAUTE",   action:"Formulaire + LinkedIn 9h–10h",         note:"N°1 luxe depuis 1945",                   filtre:"lundi" },
-  { id:9,  agence:"Emile Garcin",                    contact:"Julien de Mortillet (Dir. Paris)",     canal:"julien.demortillet@emilegarcin.fr",             statut:"À envoyer lundi",           statutKey:"lundi",  priorite:"HAUTE",   action:"Email direct 9h–10h",                  note:"2 postes alternance Paris confirmés",     filtre:"lundi" },
-  { id:10, agence:"Engel & Völkers Paris",           contact:"Lidia Fernandes Oliveira (RH)",        canal:"paris.leads@engelvoelkers.com + LinkedIn",      statut:"À envoyer lundi",           statutKey:"lundi",  priorite:"HAUTE",   action:"Email + LinkedIn 9h–10h",              note:"6 offres actives LinkedIn Paris",         filtre:"lundi" },
-  { id:11, agence:"Propriétés Parisiennes SIR",      contact:"Constans & le Ruyet",                  canal:"sothebysir8@proprietesparisiennes.com",         statut:"À envoyer mardi",           statutKey:"mardi",  priorite:"MOYENNE",  action:"Email fondateurs 9h–10h",              note:"4 agences Paris",                        filtre:"mardi" },
-  { id:12, agence:"Paris Ouest Sotheby's IR",        contact:"Direction Recrutement",                canal:"recrutement@parisouest-sothebysrealty.com",     statut:"À envoyer mardi",           statutKey:"mardi",  priorite:"MOYENNE",  action:"Email + Formulaire site 9h",           note:"Ultra-luxe 16e & Neuilly",               filtre:"mardi" },
-  { id:13, agence:"Vaneau Immobilier",               contact:"Jérôme Quentel (Dir. Développement)",  canal:"jerome.quentel@vaneau.fr",                     statut:"À envoyer mardi",           statutKey:"mardi",  priorite:"MOYENNE",  action:"Email + CC recrutement",               note:"25 agences, 50 ans Paris",               filtre:"mardi" },
-  { id:14, agence:"Kretz Real Estate",               contact:"À identifier (site + LinkedIn)",        canal:"—",                                            statut:"Dossier à préparer",        statutKey:"prep",   priorite:"HAUTE",   action:"Identifier contact + rédiger",         note:"100 rue du Bac 75007",                   filtre:"prep" },
-  { id:15, agence:"Patrice Besse",                   contact:"Via offre LinkedIn active",             canal:"patrice-besse.com/nous-rejoindre/",             statut:"Offre LinkedIn active",     statutKey:"prep",   priorite:"HAUTE",   action:"Postuler sur LinkedIn",                note:"Asst Commercial & Communication",         filtre:"prep" },
-  { id:16, agence:"Paris Attitude",                  contact:"mail@parisattitude.com",               canal:"parisattitude.com/fr/emploi",                  statut:"Offre LinkedIn active",     statutKey:"prep",   priorite:"HAUTE",   action:"Postuler sur LinkedIn",                note:"Agent de visite 1 an",                   filtre:"prep" },
-  { id:17, agence:"Varenne Immobilier",              contact:"Formulaire site",                       canal:"varenne.fr/recrutement",                       statut:"Dossier à préparer",        statutKey:"prep",   priorite:"HAUTE",   action:"Rédiger + postuler",                   note:"6e/7e — biens >950k€",                   filtre:"prep" },
-  { id:18, agence:"District Immobilier",             contact:"contact@district-immo.com",             canal:"contact@district-immo.com",                   statut:"Spontanée à envoyer",       statutKey:"prep",   priorite:"MOYENNE",  action:"Préparer et envoyer",                  note:"Île Saint-Louis, Triangle d'Or",         filtre:"prep" },
-  { id:19, agence:"Polo Properties",                 contact:"contact@polo-properties.com",           canal:"contact@polo-properties.com",                 statut:"Alternance à challenger",   statutKey:"prep",   priorite:"MOYENNE",  action:"Préparer dossier",                     note:"93 rue Fg Saint-Honoré 75008",           filtre:"prep" },
-  { id:20, agence:"Coldwell Banker Europa",          contact:"Via offre LinkedIn",                    canal:"LinkedIn",                                     statut:"Offre à confirmer",         statutKey:"prep",   priorite:"MOYENNE",  action:"Postuler + confirmer",                 note:"Négociateur Immo de Luxe",               filtre:"prep" },
-  { id:21, agence:"Knight Frank France",             contact:"Via annonce agrégée",                   canal:"—",                                            statut:"Annonce à confirmer",       statutKey:"prep",   priorite:"MOYENNE",  action:"Vérifier et postuler",                 note:"Asst commercial prestige",               filtre:"prep" },
-  { id:22, agence:"Marc Foujols",                    contact:"Formulaire site",                       canal:"marcfoujols.com",                              statut:"Alternance à confirmer",    statutKey:"prep",   priorite:"MOYENNE",  action:"Postuler formulaire",                  note:"Trocadéro + Saint-Germain",              filtre:"prep" },
-  { id:23, agence:"Jeanson × Nest Seekers",          contact:"Directrice LinkedIn",                   canal:"LinkedIn",                                     statut:"Offre agent prestige",      statutKey:"prep",   priorite:"MOYENNE",  action:"Identifier + postuler",                note:"20 rue Cambon 75001",                    filtre:"prep" },
-  { id:24, agence:"ESPI Job Dating",                 contact:"paris.sre@groupe-espi.fr",              canal:"Coaching Karima/Amal",                         statut:"⚠️ Avant 30 avril",         statutKey:"plat",   priorite:"—",       action:"Réserver coaching AVANT le 30 avril",  note:"30/04 • 28/05 • 09/07",                 filtre:"plat" },
-  { id:25, agence:"JobTeaser ESPI",                  contact:"—",                                     canal:"JobTeaser",                                    statut:"Compte créé",               statutKey:"plat",   priorite:"—",       action:"Postuler toutes offres pertinentes",   note:"",                                       filtre:"plat" },
-  { id:26, agence:"Foncia",                          contact:"—",                                     canal:"recrutement.foncia.com",                       statut:"À postuler",                statutKey:"plat",   priorite:"—",       action:"Site + JobTeaser",                     note:"Expérience CASA très pertinente",        filtre:"plat" },
-  { id:27, agence:"Crédit Agricole Immobilier",      contact:"—",                                     canal:"Indeed",                                       statut:"À postuler",                statutKey:"plat",   priorite:"—",       action:"Postuler Indeed",                      note:"Bac+3 sept. 2026",                       filtre:"plat" },
+  { id:1,  agence:"Maison Junot",                    contact:"Sébastien Kuperfis (Président)",       canal:"Formulaire junot.fr",                          statutKey:"envoye", priorite:"HAUTE",   action:"Relance LinkedIn lun. 7/04 9h",        note:"Offre alternance active confirmée",       filtre:"envoye", dateEnvoi:"2026-04-01", url:"", notesLongues:"", historique:[] },
+  { id:2,  agence:"De Ferla Immobilier",             contact:"recrutement@deferla.com",              canal:"Formulaire deferla.com",                       statutKey:"envoye", priorite:"MOYENNE",  action:"Attendre 10 jours",                   note:"Candidature spontanée",                  filtre:"envoye", dateEnvoi:"2026-04-02", url:"", notesLongues:"", historique:[] },
+  { id:3,  agence:"Barnes International",            contact:"Mme Lambert (RH)",                     canal:"recrutement@barnes-international.com",          statutKey:"chaud",  priorite:"HAUTE",   action:"Relance email ~14 avril",              note:"Réponse positive — recrutement à reprendre", filtre:"chaud", dateEnvoi:"2026-03-28", url:"", notesLongues:"", historique:[] },
+  { id:4,  agence:"Nouveau Siècle",                  contact:"Lola (job dating ESPI)",               canal:"Job dating ESPI",                              statutKey:"chaud",  priorite:"HAUTE",   action:"Relance ~12–15 mai",                  note:"Contact chaud confirmé",                 filtre:"chaud", dateEnvoi:"2026-03-20", url:"", notesLongues:"", historique:[] },
+  { id:5,  agence:"John Taylor Luxury RE",           contact:"direction.paris@john-taylor.com",      canal:"Formulaire site + email",                      statutKey:"envoye", priorite:"HAUTE",   action:"⚠️ Email lundi 7/04 9h",               note:"Ouverture agence Rive Gauche",            filtre:"lundi", dateEnvoi:"2026-04-04", url:"", notesLongues:"", historique:[] },
+  { id:6,  agence:"Union Foncière de France",        contact:"recrutement@union-fonciere-france.fr", canal:"Candidature spontanée",                        statutKey:"envoye", priorite:"MOYENNE",  action:"Attendre 10 jours",                   note:"43 av. Hoche 75008",                     filtre:"envoye", dateEnvoi:"2026-04-03", url:"", notesLongues:"", historique:[] },
+  { id:7,  agence:"AGS Immobilier Prestige",         contact:"Vincent Leduc (Gérant)",               canal:"Tél : 01 53 81 02 09",                         statutKey:"envoye", priorite:"MOYENNE",  action:"Appel lundi — confirmer contact",      note:"8 rue Saussier-Leroy 75017",             filtre:"lundi", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:8,  agence:"Daniel Féau Conseil Immo.",       contact:"Sophie B.M. (DGA) + Mme Da Costa",    canal:"danielfeau.com/recrutement + LinkedIn",         statutKey:"lundi",  priorite:"HAUTE",   action:"Formulaire + LinkedIn 9h–10h",         note:"N°1 luxe depuis 1945",                   filtre:"lundi", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:9,  agence:"Emile Garcin",                    contact:"Julien de Mortillet (Dir. Paris)",     canal:"julien.demortillet@emilegarcin.fr",             statutKey:"lundi",  priorite:"HAUTE",   action:"Email direct 9h–10h",                  note:"2 postes alternance Paris confirmés",     filtre:"lundi", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:10, agence:"Engel & Völkers Paris",           contact:"Lidia Fernandes Oliveira (RH)",        canal:"paris.leads@engelvoelkers.com + LinkedIn",      statutKey:"lundi",  priorite:"HAUTE",   action:"Email + LinkedIn 9h–10h",              note:"6 offres actives LinkedIn Paris",         filtre:"lundi", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:11, agence:"Propriétés Parisiennes SIR",      contact:"Constans & le Ruyet",                  canal:"sothebysir8@proprietesparisiennes.com",         statutKey:"mardi",  priorite:"MOYENNE",  action:"Email fondateurs 9h–10h",              note:"4 agences Paris",                        filtre:"mardi", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:12, agence:"Paris Ouest Sotheby's IR",        contact:"Direction Recrutement",                canal:"recrutement@parisouest-sothebysrealty.com",     statutKey:"mardi",  priorite:"MOYENNE",  action:"Email + Formulaire site 9h",           note:"Ultra-luxe 16e & Neuilly",               filtre:"mardi", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:13, agence:"Vaneau Immobilier",               contact:"Jérôme Quentel (Dir. Développement)",  canal:"jerome.quentel@vaneau.fr",                     statutKey:"mardi",  priorite:"MOYENNE",  action:"Email + CC recrutement",               note:"25 agences, 50 ans Paris",               filtre:"mardi", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:14, agence:"Kretz Real Estate",               contact:"À identifier (site + LinkedIn)",        canal:"—",                                            statutKey:"prep",   priorite:"HAUTE",   action:"Identifier contact + rédiger",         note:"100 rue du Bac 75007",                   filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:15, agence:"Patrice Besse",                   contact:"Via offre LinkedIn active",             canal:"patrice-besse.com/nous-rejoindre/",             statutKey:"prep",   priorite:"HAUTE",   action:"Postuler sur LinkedIn",                note:"Asst Commercial & Communication",         filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:16, agence:"Paris Attitude",                  contact:"mail@parisattitude.com",               canal:"parisattitude.com/fr/emploi",                  statutKey:"prep",   priorite:"HAUTE",   action:"Postuler sur LinkedIn",                note:"Agent de visite 1 an",                   filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:17, agence:"Varenne Immobilier",              contact:"Formulaire site",                       canal:"varenne.fr/recrutement",                       statutKey:"prep",   priorite:"HAUTE",   action:"Rédiger + postuler",                   note:"6e/7e — biens >950k€",                   filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:18, agence:"District Immobilier",             contact:"contact@district-immo.com",             canal:"contact@district-immo.com",                   statutKey:"prep",   priorite:"MOYENNE",  action:"Préparer et envoyer",                  note:"Île Saint-Louis, Triangle d'Or",         filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:19, agence:"Polo Properties",                 contact:"contact@polo-properties.com",           canal:"contact@polo-properties.com",                 statutKey:"prep",   priorite:"MOYENNE",  action:"Préparer dossier",                     note:"93 rue Fg Saint-Honoré 75008",           filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:20, agence:"Coldwell Banker Europa",          contact:"Via offre LinkedIn",                    canal:"LinkedIn",                                     statutKey:"prep",   priorite:"MOYENNE",  action:"Postuler + confirmer",                 note:"Négociateur Immo de Luxe",               filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:21, agence:"Knight Frank France",             contact:"Via annonce agrégée",                   canal:"—",                                            statutKey:"prep",   priorite:"MOYENNE",  action:"Vérifier et postuler",                 note:"Asst commercial prestige",               filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:22, agence:"Marc Foujols",                    contact:"Formulaire site",                       canal:"marcfoujols.com",                              statutKey:"prep",   priorite:"MOYENNE",  action:"Postuler formulaire",                  note:"Trocadéro + Saint-Germain",              filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:23, agence:"Jeanson × Nest Seekers",          contact:"Directrice LinkedIn",                   canal:"LinkedIn",                                     statutKey:"prep",   priorite:"MOYENNE",  action:"Identifier + postuler",                note:"20 rue Cambon 75001",                    filtre:"prep", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:24, agence:"ESPI Job Dating",                 contact:"paris.sre@groupe-espi.fr",              canal:"Coaching Karima/Amal",                         statutKey:"plat",   priorite:"—",       action:"Réserver coaching AVANT le 30 avril",  note:"30/04 • 28/05 • 09/07",                 filtre:"plat", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:25, agence:"JobTeaser ESPI",                  contact:"—",                                     canal:"JobTeaser",                                    statutKey:"plat",   priorite:"—",       action:"Postuler toutes offres pertinentes",   note:"",                                       filtre:"plat", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:26, agence:"Foncia",                          contact:"—",                                     canal:"recrutement.foncia.com",                       statutKey:"plat",   priorite:"—",       action:"Site + JobTeaser",                     note:"Expérience CASA très pertinente",        filtre:"plat", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
+  { id:27, agence:"Crédit Agricole Immobilier",      contact:"—",                                     canal:"Indeed",                                       statutKey:"plat",   priorite:"—",       action:"Postuler Indeed",                      note:"Bac+3 sept. 2026",                       filtre:"plat", dateEnvoi:"", url:"", notesLongues:"", historique:[] },
 ]
 
 const RELANCES = [
-  { date:"Lundi 7 avril 9h",   agence:"Maison Junot",        contact:"Sébastien Kuperfis — LinkedIn",    urgence:"haute" },
-  { date:"Lundi 7 avril 9h",   agence:"John Taylor",          contact:"direction.paris@john-taylor.com",  urgence:"haute" },
-  { date:"~14 avril",           agence:"Barnes International", contact:"Mme Lambert — email",             urgence:"moy"   },
-  { date:"Avant 30 avril",      agence:"ESPI Job Dating",     contact:"Réserver coaching Karima/Amal",    urgence:"moy"   },
-  { date:"~12–15 mai",          agence:"Nouveau Siècle",      contact:"Lola — contact chaud",             urgence:"low"   },
+  { date:"Lundi 7 avril 9h",   dateISO:"2026-04-07", agence:"Maison Junot",        contact:"Sébastien Kuperfis — LinkedIn",    urgence:"haute" },
+  { date:"Lundi 7 avril 9h",   dateISO:"2026-04-07", agence:"John Taylor",          contact:"direction.paris@john-taylor.com",  urgence:"haute" },
+  { date:"~14 avril",           dateISO:"2026-04-14", agence:"Barnes International", contact:"Mme Lambert — email",             urgence:"moy"   },
+  { date:"Avant 30 avril",      dateISO:"2026-04-30", agence:"ESPI Job Dating",     contact:"Réserver coaching Karima/Amal",    urgence:"moy"   },
+  { date:"~12–15 mai",          dateISO:"2026-05-12", agence:"Nouveau Siècle",      contact:"Lola — contact chaud",             urgence:"low"   },
 ]
 
 const PLANNING_DATA = {
@@ -628,29 +533,48 @@ const DONUT_CONFIG = {
 let agences = []
 let filter  = 'all'
 let search  = ''
+let editId  = null   // null = ajout, number = édition
+let panelId = null   // agence ouverte dans le panel
 
 function loadData() {
   try {
     const saved = localStorage.getItem(DATA_KEY)
-    if (saved) agences = JSON.parse(saved)
-    else agences = JSON.parse(JSON.stringify(AGENCES_DEFAULT))
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      // migration : ajouter les nouveaux champs aux anciennes entrées
+      agences = parsed.map(a => ({
+        dateEnvoi: '', url: '', notesLongues: '', historique: [], ...a
+      }))
+    } else {
+      agences = JSON.parse(JSON.stringify(AGENCES_DEFAULT))
+    }
   } catch { agences = JSON.parse(JSON.stringify(AGENCES_DEFAULT)) }
 }
 
-function saveData() {
-  localStorage.setItem(DATA_KEY, JSON.stringify(agences))
-}
+function saveData() { localStorage.setItem(DATA_KEY, JSON.stringify(agences)) }
+
+function nextId() { return agences.length ? Math.max(...agences.map(a => a.id)) + 1 : 1 }
 
 function updateStatut(id, newKey) {
   const opt = STATUT_OPTIONS.find(o => o.key === newKey)
   if (!opt) return
-  agences = agences.map(a =>
-    a.id === id ? { ...a, filtre: newKey, statutKey: newKey, statut: opt.label } : a
-  )
+  agences = agences.map(a => {
+    if (a.id !== id) return a
+    const hist = [...(a.historique || []), { date: new Date().toISOString(), from: a.statutKey, to: newKey }].slice(-10)
+    return { ...a, filtre: newKey, statutKey: newKey, statut: opt.label, historique: hist }
+  })
   saveData()
   renderTable()
   renderKPIs()
   renderDonut()
+  renderProgress()
+}
+
+function deleteAgence(id) {
+  if (!confirm('Supprimer cette agence ?')) return
+  agences = agences.filter(a => a.id !== id)
+  saveData()
+  renderAll()
 }
 
 // ─── AUTH ─────────────────────────────────────────────
@@ -680,13 +604,160 @@ document.getElementById('auth-form').addEventListener('submit', function(e) {
   }
 })
 
-document.getElementById('logout-btn').addEventListener('click', function() {
+document.getElementById('logout-btn').addEventListener('click', () => {
   sessionStorage.removeItem(SESSION_KEY)
   window.location.reload()
 })
 
+// ─── MODAL ────────────────────────────────────────────
+function openModal(id = null) {
+  editId = id
+  const a = id ? agences.find(x => x.id === id) : null
+  document.getElementById('modal-title').textContent = id ? 'Modifier l\'agence' : 'Ajouter une agence'
+  document.getElementById('f-agence').value   = a ? a.agence       : ''
+  document.getElementById('f-contact').value  = a ? a.contact      : ''
+  document.getElementById('f-canal').value    = a ? a.canal        : ''
+  document.getElementById('f-statut').value   = a ? a.statutKey    : 'prep'
+  document.getElementById('f-priorite').value = a ? a.priorite     : 'HAUTE'
+  document.getElementById('f-date').value     = a ? a.dateEnvoi    : ''
+  document.getElementById('f-url').value      = a ? a.url          : ''
+  document.getElementById('f-action').value   = a ? a.action       : ''
+  document.getElementById('f-note').value     = a ? a.note         : ''
+  document.getElementById('modal-overlay').classList.remove('hidden')
+  document.getElementById('f-agence').focus()
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.add('hidden')
+  editId = null
+}
+
+function saveModal() {
+  const agence = document.getElementById('f-agence').value.trim()
+  if (!agence) { document.getElementById('f-agence').focus(); return }
+  const statutKey = document.getElementById('f-statut').value
+  const opt = STATUT_OPTIONS.find(o => o.key === statutKey)
+
+  if (editId) {
+    agences = agences.map(a => a.id === editId ? {
+      ...a,
+      agence,
+      contact:   document.getElementById('f-contact').value.trim(),
+      canal:     document.getElementById('f-canal').value.trim(),
+      statutKey,
+      filtre:    statutKey,
+      statut:    opt.label,
+      priorite:  document.getElementById('f-priorite').value,
+      dateEnvoi: document.getElementById('f-date').value,
+      url:       document.getElementById('f-url').value.trim(),
+      action:    document.getElementById('f-action').value.trim(),
+      note:      document.getElementById('f-note').value.trim(),
+    } : a)
+  } else {
+    agences.push({
+      id:          nextId(),
+      agence,
+      contact:     document.getElementById('f-contact').value.trim(),
+      canal:       document.getElementById('f-canal').value.trim(),
+      statutKey,
+      filtre:      statutKey,
+      statut:      opt.label,
+      priorite:    document.getElementById('f-priorite').value,
+      dateEnvoi:   document.getElementById('f-date').value,
+      url:         document.getElementById('f-url').value.trim(),
+      action:      document.getElementById('f-action').value.trim(),
+      note:        document.getElementById('f-note').value.trim(),
+      notesLongues:'',
+      historique:  [],
+    })
+  }
+  saveData()
+  closeModal()
+  renderAll()
+}
+
+document.getElementById('btn-add-company').addEventListener('click', () => openModal())
+document.getElementById('modal-close').addEventListener('click', closeModal)
+document.getElementById('btn-cancel').addEventListener('click', closeModal)
+document.getElementById('btn-save-modal').addEventListener('click', saveModal)
+document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target === document.getElementById('modal-overlay')) closeModal() })
+
+// ─── SIDE PANEL ───────────────────────────────────────
+function openPanel(id) {
+  panelId = id
+  const a = agences.find(x => x.id === id)
+  if (!a) return
+
+  document.getElementById('panel-agence-name').textContent  = a.agence
+  document.getElementById('panel-agence-sub').textContent   = a.contact || '—'
+  document.getElementById('panel-notes').value              = a.notesLongues || ''
+
+  // Infos
+  const dateStr = a.dateEnvoi ? fmtDate(a.dateEnvoi) : '—'
+  const daysStr = a.dateEnvoi ? `${daysSince(a.dateEnvoi)} jours` : ''
+  document.getElementById('panel-info').innerHTML = `
+    <span class="panel-info-key">Canal</span>        <span class="panel-info-val">${esc(a.canal || '—')}</span>
+    <span class="panel-info-key">Envoyée le</span>   <span class="panel-info-val">${dateStr}${daysStr ? ` <span style="color:#8a9ab0;font-size:11px">(${daysStr})</span>` : ''}</span>
+    <span class="panel-info-key">Action</span>       <span class="panel-info-val">${esc(a.action || '—')}</span>
+    ${a.url ? `<span class="panel-info-key">Lien</span><span class="panel-info-val"><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.url.replace(/^https?:\/\//, ''))}</a></span>` : ''}
+  `
+
+  // Historique
+  const hist = a.historique || []
+  document.getElementById('history-list').innerHTML = hist.length
+    ? [...hist].reverse().map(h => `
+        <div class="history-item">
+          <span class="history-date">${new Date(h.date).toLocaleDateString('fr-FR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</span>
+          <span class="badge badge-${h.from}" style="font-size:10px;padding:1px 6px">${statutLabel(h.from)}</span>
+          <span class="history-arrow">→</span>
+          <span class="badge badge-${h.to}" style="font-size:10px;padding:1px 6px">${statutLabel(h.to)}</span>
+        </div>
+      `).join('')
+    : '<div class="history-empty">Aucun changement enregistré</div>'
+
+  const saveBtn = document.getElementById('panel-save-btn')
+  saveBtn.textContent = 'Sauvegarder'
+  saveBtn.className = 'panel-save-btn'
+
+  document.getElementById('panel-overlay').classList.remove('hidden')
+}
+
+function closePanel() {
+  document.getElementById('panel-overlay').classList.add('hidden')
+  panelId = null
+}
+
+document.getElementById('panel-close').addEventListener('click', closePanel)
+document.getElementById('panel-backdrop').addEventListener('click', closePanel)
+document.getElementById('panel-save-btn').addEventListener('click', () => {
+  if (!panelId) return
+  const notes = document.getElementById('panel-notes').value
+  agences = agences.map(a => a.id === panelId ? { ...a, notesLongues: notes } : a)
+  saveData()
+  const btn = document.getElementById('panel-save-btn')
+  btn.textContent = 'Sauvegardé ✓'
+  btn.className = 'panel-save-btn saved'
+  setTimeout(() => { btn.textContent = 'Sauvegarder'; btn.className = 'panel-save-btn' }, 2000)
+})
+
+// ─── EXPORT CSV ───────────────────────────────────────
+document.getElementById('btn-export-csv').addEventListener('click', () => {
+  const headers = ['ID','Agence','Contact','Canal','Statut','Priorité','Date envoi','Action','Note','URL','Notes longues']
+  const rows = agences.map(a => [
+    a.id, a.agence, a.contact, a.canal, a.statutKey, a.priorite,
+    a.dateEnvoi, a.action, a.note, a.url, a.notesLongues
+  ].map(v => `"${String(v||'').replace(/"/g,'""')}"`))
+  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n')
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' })
+  const link = document.createElement('a')
+  link.href = URL.createObjectURL(blob)
+  link.download = `candidatures_${new Date().toISOString().slice(0,10)}.csv`
+  link.click()
+})
+
 // ─── RENDER ───────────────────────────────────────────
 function renderAll() {
+  renderProgress()
   renderKPIs()
   renderDonut()
   renderBars()
@@ -695,10 +766,27 @@ function renderAll() {
   renderRelances()
   renderPlanning()
 
-  document.getElementById('search-input').addEventListener('input', function(e) {
-    search = e.target.value
+  document.getElementById('search-input').oninput = function() {
+    search = this.value
     renderTable()
-  })
+  }
+}
+
+// Progress
+function renderProgress() {
+  const sent   = agences.filter(a => ['envoye','chaud'].includes(a.filtre)).length
+  const pct    = Math.min(100, Math.round((sent / GOAL) * 100))
+  const chauds = agences.filter(a => a.filtre === 'chaud').length
+  const total  = agences.length
+
+  document.getElementById('progress-count').textContent = `${sent} / ${GOAL}`
+  document.getElementById('progress-fill').style.width  = pct + '%'
+  document.getElementById('progress-steps').innerHTML = `
+    <span class="progress-step"><span>${pct}%</span> de l'objectif</span>
+    <span class="progress-step"><span>${chauds}</span> contacts chauds 🔥</span>
+    <span class="progress-step"><span>${total}</span> agences ciblées</span>
+    <span class="progress-step"><span>${GOAL - sent}</span> à envoyer encore</span>
+  `
 }
 
 // KPIs
@@ -710,16 +798,15 @@ function renderKPIs() {
   const chauds   = agences.filter(a => a.filtre === 'chaud').length
 
   const kpis = [
-    { val: total,    label:'Agences ciblées',         sub:`immobilier prestige Paris`,      color:'#c9a84c' },
-    { val: envoyes,  label:'Envoyées / En cours',     sub:`dont ${chauds} contacts chauds 🔥`, color:'#378add' },
-    { val: aEnvoyer, label:'À envoyer cette semaine', sub:'lundi 7 + mardi 8 avril',        color:'#ef9f27' },
-    { val: cibles,   label:'Nouvelles cibles',        sub:'dossiers à préparer',             color:'#4caf7d' },
-    { val: '43%',    label:'Taux de retour',          sub:'3 réponses / 7 envois',           color:'#2da89a' },
+    { val:total,    label:'Agences ciblées',         sub:'immobilier prestige Paris',       color:'#c9a84c' },
+    { val:envoyes,  label:'Envoyées / En cours',     sub:`dont ${chauds} contacts chauds 🔥`, color:'#378add' },
+    { val:aEnvoyer, label:'À envoyer cette semaine', sub:'lundi 7 + mardi 8 avril',         color:'#ef9f27' },
+    { val:cibles,   label:'Nouvelles cibles',        sub:'dossiers à préparer',              color:'#4caf7d' },
+    { val:'43%',    label:'Taux de retour',          sub:'3 réponses / 7 envois',            color:'#2da89a' },
   ]
 
-  const strip = document.getElementById('kpi-strip')
-  strip.innerHTML = kpis.map((k, i) => `
-    <div class="kpi-card" style="--c:${k.color}">
+  document.getElementById('kpi-strip').innerHTML = kpis.map(k => `
+    <div class="kpi-card">
       <div class="kpi-val" style="color:${k.color}">${k.val}</div>
       <div class="kpi-label">${k.label}</div>
       <div class="kpi-sub">${k.sub}</div>
@@ -735,47 +822,48 @@ function renderDonut() {
   const total = agences.length
   const cx = 55, cy = 55, r = 38, ri = 22
   let startAngle = -Math.PI / 2
-  let paths = ''
-  let legend = ''
+  let paths = '', legend = ''
 
-  const entries = Object.entries(counts).filter(([,v]) => v > 0)
-  entries.forEach(([key, val]) => {
-    const angle    = (val / total) * 2 * Math.PI
-    const endAngle = startAngle + angle
-    const x1  = cx + r  * Math.cos(startAngle), y1  = cy + r  * Math.sin(startAngle)
-    const x2  = cx + r  * Math.cos(endAngle),   y2  = cy + r  * Math.sin(endAngle)
-    const xi1 = cx + ri * Math.cos(startAngle), yi1 = cy + ri * Math.sin(startAngle)
-    const xi2 = cx + ri * Math.cos(endAngle),   yi2 = cy + ri * Math.sin(endAngle)
+  Object.entries(counts).filter(([,v]) => v > 0).forEach(([key, val]) => {
+    const angle = (val / total) * 2 * Math.PI
+    const end   = startAngle + angle
+    const x1 = cx + r*Math.cos(startAngle), y1 = cy + r*Math.sin(startAngle)
+    const x2 = cx + r*Math.cos(end),        y2 = cy + r*Math.sin(end)
+    const xi1 = cx + ri*Math.cos(startAngle), yi1 = cy + ri*Math.sin(startAngle)
+    const xi2 = cx + ri*Math.cos(end),        yi2 = cy + ri*Math.sin(end)
     const large = angle > Math.PI ? 1 : 0
     const d = `M${x1},${y1} A${r},${r},0,${large},1,${x2},${y2} L${xi2},${yi2} A${ri},${ri},0,${large},0,${xi1},${yi1} Z`
-    const cfg = DONUT_CONFIG[key] || { color:'#8a9ab0', label: key }
+    const cfg = DONUT_CONFIG[key] || { color:'#8a9ab0', label:key }
     paths += `<path d="${d}" fill="${cfg.color}" opacity="0.9" stroke="#131c26" stroke-width="1.5"><title>${cfg.label} : ${val}</title></path>`
     legend += `<div class="legend-row"><span class="legend-dot" style="background:${cfg.color}"></span><span class="legend-label">${cfg.label}</span><span class="legend-val">${val}</span></div>`
-    startAngle = endAngle
+    startAngle = end
   })
 
   paths += `
-    <text x="${cx}" y="${cy - 6}" text-anchor="middle" fill="#f5f3ee"
-      font-family="Syne, sans-serif" font-size="18" font-weight="800">${total}</text>
-    <text x="${cx}" y="${cy + 10}" text-anchor="middle" fill="#8a9ab0"
-      font-size="8" font-family="DM Sans, sans-serif">agences</text>
+    <text x="${cx}" y="${cy-6}" text-anchor="middle" fill="#f5f3ee" font-family="Syne,sans-serif" font-size="18" font-weight="800">${total}</text>
+    <text x="${cx}" y="${cy+10}" text-anchor="middle" fill="#8a9ab0" font-size="8" font-family="DM Sans,sans-serif">agences</text>
   `
-  document.getElementById('donut-svg').innerHTML = paths
+  document.getElementById('donut-svg').innerHTML    = paths
   document.getElementById('donut-legend').innerHTML = legend
 }
 
 // Bars
 function renderBars() {
-  const bars = [
-    { label:'Priorité HAUTE',   val:13, max:20, color:'#e24b4a' },
-    { label:'Priorité MOYENNE', val:11, max:20, color:'#ef9f27' },
-    { label:'Plateformes',      val:4,  max:20, color:'#7f77dd' },
-    { label:'Contacts chauds',  val:3,  max:20, color:'#2da89a' },
+  const haute  = agences.filter(a => a.priorite === 'HAUTE').length
+  const moy    = agences.filter(a => a.priorite === 'MOYENNE').length
+  const plat   = agences.filter(a => a.filtre === 'plat').length
+  const chaud  = agences.filter(a => a.filtre === 'chaud').length
+  const maxVal = Math.max(haute, moy, plat, chaud, 1)
+  const bars   = [
+    { label:'Priorité HAUTE',   val:haute, color:'#e24b4a' },
+    { label:'Priorité MOYENNE', val:moy,   color:'#ef9f27' },
+    { label:'Plateformes',      val:plat,  color:'#7f77dd' },
+    { label:'Contacts chauds',  val:chaud, color:'#2da89a' },
   ]
   document.getElementById('bar-chart').innerHTML = bars.map(b => `
     <div class="bar-row">
       <span class="bar-label">${b.label}</span>
-      <div class="bar-track"><div class="bar-fill" style="width:${(b.val/b.max)*100}%;background:${b.color}"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(b.val/maxVal)*100}%;background:${b.color}"></div></div>
       <span class="bar-num">${b.val}</span>
     </div>
   `).join('')
@@ -783,7 +871,7 @@ function renderBars() {
 
 // Chips
 function renderChips() {
-  const chips = [
+  const defs = [
     { key:'all',    label:'Tout' },
     { key:'chaud',  label:'Contacts chauds 🔥' },
     { key:'envoye', label:'Envoyées' },
@@ -795,88 +883,108 @@ function renderChips() {
   const counts = { all: agences.length }
   agences.forEach(a => { counts[a.filtre] = (counts[a.filtre] || 0) + 1 })
 
-  document.getElementById('chips').innerHTML = chips.map(c => `
+  document.getElementById('chips').innerHTML = defs.map(c => `
     <button class="chip${filter === c.key ? ' active' : ''}" data-key="${c.key}">
-      ${c.label}
-      ${counts[c.key] !== undefined ? `<span class="chip-count">${counts[c.key]}</span>` : ''}
+      ${c.label}${counts[c.key] !== undefined ? `<span class="chip-count">${counts[c.key]}</span>` : ''}
     </button>
   `).join('')
 
-  document.querySelectorAll('.chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      filter = btn.dataset.key
-      renderChips()
-      renderTable()
-    })
-  })
+  document.querySelectorAll('.chip').forEach(btn => btn.addEventListener('click', () => {
+    filter = btn.dataset.key
+    renderChips()
+    renderTable()
+  }))
 }
 
 // Table
 function renderTable() {
   const q = search.toLowerCase()
+  const today = new Date(); today.setHours(0,0,0,0)
   const filtered = agences.filter(a => {
     const mF = filter === 'all' || a.filtre === filter
-    const mS = !q || a.agence.toLowerCase().includes(q) || a.contact.toLowerCase().includes(q) || a.action.toLowerCase().includes(q)
+    const mS = !q || a.agence.toLowerCase().includes(q) || a.contact.toLowerCase().includes(q) || a.action.toLowerCase().includes(q) || (a.note||'').toLowerCase().includes(q)
     return mF && mS
   })
 
-  document.getElementById('table-count').textContent =
-    `${filtered.length} entrée${filtered.length > 1 ? 's' : ''}`
+  document.getElementById('table-count').textContent = `${filtered.length} entrée${filtered.length > 1 ? 's' : ''}`
 
-  const selectOptions = STATUT_OPTIONS.map(o =>
-    `<option value="${o.key}">${o.label}</option>`
-  ).join('')
+  const prioCls = { 'HAUTE':'badge prio-HAUTE', 'MOYENNE':'badge prio-MOYENNE', '—':'badge prio-dash' }
 
-  const prioCls = {
-    'HAUTE':   'badge prio-HAUTE',
-    'MOYENNE': 'badge prio-MOYENNE',
-    '—':       'badge prio-dash',
-  }
+  document.getElementById('table-body').innerHTML = filtered.length ? filtered.map(a => {
+    const days     = a.dateEnvoi ? daysSince(a.dateEnvoi) : null
+    const overdue  = days !== null && ['envoye','chaud'].includes(a.filtre) && days > 14
+    const daysCls  = days === null ? '' : days > 14 ? 'days-urgent' : days > 7 ? 'days-warn' : 'days-ok'
+    const daysHtml = days !== null ? `<div class="days-badge ${daysCls}">${days}j sans réponse</div>` : ''
+    const hasNotes = a.notesLongues && a.notesLongues.trim()
+    return `
+      <tr${overdue ? ' class="overdue-row"' : ''}>
+        <td class="td-id">${a.id}</td>
+        <td>
+          <div class="td-agence">
+            ${esc(a.agence)}
+            ${hasNotes ? `<svg width="8" height="8" viewBox="0 0 8 8" style="color:#c084fc;flex-shrink:0" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>` : ''}
+          </div>
+          ${a.note ? `<div class="td-note">${esc(a.note)}</div>` : ''}
+        </td>
+        <td class="td-contact td-hide">${esc(a.contact)}</td>
+        <td>
+          <div class="badge badge-${a.statutKey}">
+            <select data-id="${a.id}" class="statut-select">
+              ${STATUT_OPTIONS.map(o => `<option value="${o.key}"${o.key === a.statutKey ? ' selected' : ''}>${o.label}</option>`).join('')}
+            </select>
+          </div>
+        </td>
+        <td class="td-hide"><span class="${prioCls[a.priorite] || 'badge prio-dash'}">${a.priorite}</span></td>
+        <td class="td-date">
+          ${a.dateEnvoi ? fmtDate(a.dateEnvoi) : '<span style="color:#3a4a5c">—</span>'}
+          ${daysHtml}
+        </td>
+        <td class="td-action">${esc(a.action)}</td>
+        <td class="td-actions">
+          ${a.url ? `<button class="row-btn btn-link" title="Ouvrir le lien" data-url="${esc(a.url)}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </button>` : ''}
+          <button class="row-btn btn-notes" title="Notes & historique" data-id="${a.id}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </button>
+          <button class="row-btn btn-edit" title="Modifier" data-id="${a.id}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="row-btn btn-del" title="Supprimer" data-id="${a.id}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+          </button>
+        </td>
+      </tr>
+    `
+  }).join('') : `<tr class="empty-row"><td colspan="8">Aucun résultat</td></tr>`
 
-  document.getElementById('table-body').innerHTML = filtered.length ? filtered.map(a => `
-    <tr>
-      <td class="td-id">${a.id}</td>
-      <td>
-        <div class="td-agence">${esc(a.agence)}</div>
-        ${a.note ? `<div class="td-note">${esc(a.note)}</div>` : ''}
-      </td>
-      <td class="td-contact">${esc(a.contact)}</td>
-      <td>
-        <div class="badge badge-${a.statutKey}">
-          <select data-id="${a.id}" class="statut-select">
-            ${STATUT_OPTIONS.map(o =>
-              `<option value="${o.key}"${o.key === a.statutKey ? ' selected' : ''}>${o.label}</option>`
-            ).join('')}
-          </select>
-        </div>
-      </td>
-      <td><span class="${prioCls[a.priorite] || 'badge prio-dash'}">${a.priorite}</span></td>
-      <td class="td-action">${esc(a.action)}</td>
-    </tr>
-  `).join('') : `<tr class="empty-row"><td colspan="6">Aucun résultat</td></tr>`
-
-  document.querySelectorAll('.statut-select').forEach(sel => {
-    sel.addEventListener('change', function() {
-      updateStatut(parseInt(this.dataset.id), this.value)
-    })
-  })
+  document.querySelectorAll('.statut-select').forEach(sel => sel.addEventListener('change', function() { updateStatut(parseInt(this.dataset.id), this.value) }))
+  document.querySelectorAll('.btn-edit').forEach(btn => btn.addEventListener('click', () => openModal(parseInt(btn.dataset.id))))
+  document.querySelectorAll('.btn-del').forEach(btn => btn.addEventListener('click', () => deleteAgence(parseInt(btn.dataset.id))))
+  document.querySelectorAll('.btn-notes').forEach(btn => btn.addEventListener('click', () => openPanel(parseInt(btn.dataset.id))))
+  document.querySelectorAll('.btn-link').forEach(btn => btn.addEventListener('click', () => window.open(btn.dataset.url, '_blank', 'noopener')))
 }
 
 // Relances
 function renderRelances() {
+  const today = new Date(); today.setHours(0,0,0,0)
   const dotColor  = { haute:'#e24b4a', moy:'#ef9f27', low:'#8a9ab0' }
   const dateColor = { haute:'#f07070', moy:'#f0b84a', low:'#8a9ab0' }
 
-  document.getElementById('relance-list').innerHTML = RELANCES.map(r => `
-    <div class="relance-item">
-      <div class="relance-dot" style="background:${dotColor[r.urgence]}"></div>
-      <div>
-        <div class="relance-agence">${esc(r.agence)}</div>
-        <div class="relance-contact">${esc(r.contact)}</div>
-        <div class="relance-date" style="color:${dateColor[r.urgence]}">${esc(r.date)}</div>
+  document.getElementById('relance-list').innerHTML = RELANCES.map(r => {
+    const rd      = new Date(r.dateISO); rd.setHours(0,0,0,0)
+    const overdue = rd < today
+    return `
+      <div class="relance-item${overdue ? ' overdue' : ''}">
+        <div class="relance-dot" style="background:${dotColor[r.urgence]}"></div>
+        <div>
+          <div class="relance-agence">${esc(r.agence)}${overdue ? '<span class="overdue-tag">EN RETARD</span>' : ''}</div>
+          <div class="relance-contact">${esc(r.contact)}</div>
+          <div class="relance-date" style="color:${dateColor[r.urgence]}">${esc(r.date)}</div>
+        </div>
       </div>
-    </div>
-  `).join('')
+    `
+  }).join('')
 }
 
 // Planning
@@ -885,14 +993,8 @@ function renderPlanning() {
   try { checked = JSON.parse(localStorage.getItem(PLAN_KEY) || '{}') } catch {}
 
   const makeItems = (tasks, prefix) => tasks.map((text, i) => {
-    const id = `${prefix}${i}`
-    const done = !!checked[id]
-    return `
-      <label class="planning-item">
-        <input type="checkbox" data-id="${id}" ${done ? 'checked' : ''}>
-        <span class="planning-text${done ? ' done' : ''}">${esc(text)}</span>
-      </label>
-    `
+    const id = `${prefix}${i}`, done = !!checked[id]
+    return `<label class="planning-item"><input type="checkbox" data-id="${id}"${done ? ' checked' : ''}><span class="planning-text${done ? ' done' : ''}">${esc(text)}</span></label>`
   }).join('')
 
   document.getElementById('planning-body').innerHTML = `
@@ -905,23 +1007,36 @@ function renderPlanning() {
       ${makeItems(PLANNING_DATA.mardi, 'm')}
     </div>
   `
-
-  document.querySelectorAll('#planning-body input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', function() {
-      const id = this.dataset.id
-      try { checked = JSON.parse(localStorage.getItem(PLAN_KEY) || '{}') } catch { checked = {} }
-      checked[id] = this.checked
-      localStorage.setItem(PLAN_KEY, JSON.stringify(checked))
-      const span = this.nextElementSibling
-      span.classList.toggle('done', this.checked)
-    })
-  })
+  document.querySelectorAll('#planning-body input[type="checkbox"]').forEach(cb => cb.addEventListener('change', function() {
+    try { checked = JSON.parse(localStorage.getItem(PLAN_KEY) || '{}') } catch { checked = {} }
+    checked[this.dataset.id] = this.checked
+    localStorage.setItem(PLAN_KEY, JSON.stringify(checked))
+    this.nextElementSibling.classList.toggle('done', this.checked)
+  }))
 }
 
-// Utility
+// ─── UTILS ────────────────────────────────────────────
 function esc(str) {
   if (!str) return ''
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+}
+
+function daysSince(iso) {
+  if (!iso) return null
+  const d = new Date(iso); d.setHours(0,0,0,0)
+  const today = new Date(); today.setHours(0,0,0,0)
+  return Math.floor((today - d) / 86400000)
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—'
+  const [y,m,d] = iso.split('-')
+  return `${d}/${m}/${y}`
+}
+
+function statutLabel(key) {
+  const opt = STATUT_OPTIONS.find(o => o.key === key)
+  return opt ? opt.label : key
 }
 
 // ─── INIT ─────────────────────────────────────────────
